@@ -1,6 +1,6 @@
 package eu.choreos.analysis;
 
-import eu.choreos.analysis.entity.CentralityResults;
+import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.OverallStabilityResults;
 import eu.choreos.middleware.entity.BehaviorProtocolAutomaton;
 import eu.choreos.middleware.entity.ChoreographyModel;
@@ -13,10 +13,10 @@ public interface SIA {
 	public OverallStabilityResults calculateOverallStability(
 			BehaviorProtocolAutomaton behaviorProtocolAutomaton);
 	
-	public CentralityResults calculateCentrality(ChoreographyModel 
+	public CentralityAnalysis calculateCentrality(ChoreographyModel 
 			choreographyModel);
 	
-	public CentralityResults calculateCentrality(
+	public CentralityAnalysis calculateCentrality(
 			BehaviorProtocolAutomaton behaviorProtocolAutomaton);
 	
 }

@@ -1,7 +1,7 @@
 package eu.choreos.analysis;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
-import eu.choreos.analysis.entity.CentralityResults;
+import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.OverallStabilityResults;
 import eu.choreos.analysis.graph.Edge;
 import eu.choreos.analysis.graph.Vertex;
@@ -42,23 +42,23 @@ public class SIA_Adapter implements SIA{
 	}
 
 	@Override
-	public CentralityResults calculateCentrality(
+	public CentralityAnalysis calculateCentrality(
 			ChoreographyModel choreographyModel) {
 
 		DirectedGraph<Vertex,Edge> graph = null;
-		CentralityResults results =	
-			depAnalyzer.calculateCentralityMeasures(graph);
+		CentralityAnalysis results =	
+			depAnalyzer.calculateCentralityAnalysis(graph);
 		
 		return results;
 	}
 
 	@Override
-	public CentralityResults calculateCentrality(
+	public CentralityAnalysis calculateCentrality(
 			BehaviorProtocolAutomaton behaviorProtocolAutomaton) {
 		
 		DirectedGraph<Vertex,Edge> graph = null;
-		CentralityResults results =	
-			depAnalyzer.calculateCentralityMeasures(graph);
+		CentralityAnalysis results =	
+			depAnalyzer.calculateCentralityAnalysis(graph);
 		
 		return results;
 	}

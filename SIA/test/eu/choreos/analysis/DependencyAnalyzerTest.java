@@ -45,7 +45,7 @@ public class DependencyAnalyzerTest {
 		
 		// calculated
 		DependencyAnalyzer analyzer = new JungAnalyzer();
-		CentralityAnalysis analysis = analyzer.calculateCentralityMeasures(graph);
+		CentralityAnalysis analysis = analyzer.calculateCentralityAnalysis(graph);
 		Map<Vertex, DegreeCentrality> calculated = analysis.getVerticesDegreeCentrality();
 		
 		// test
@@ -53,7 +53,5 @@ public class DependencyAnalyzerTest {
 			assertEquals(expected.get(v), calculated.get(v));
 		}
 	}
-	
-	
 	
 }

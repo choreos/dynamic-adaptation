@@ -35,13 +35,13 @@ public class GraphFactory {
 		//Adds the edges
 		graph.addEdge(new Edge(1), a, b);
 		graph.addEdge(new Edge(2), b, a);
-		graph.addEdge(new Edge(3), b, c);
+		graph.addEdge(new Edge(3), a, c);
 		
 		// create centrality analysis
 		
 		Map<Vertex, DegreeCentrality> vDegCent = new HashMap<Vertex, DegreeCentrality>();
 		vDegCent.put(a, new DegreeCentrality(0.5, 1));
-		vDegCent.put(b, new DegreeCentrality(0.5, 0));
+		vDegCent.put(b, new DegreeCentrality(0.5, 0.5));
 		vDegCent.put(c, new DegreeCentrality(0.5, 0));
 		
 		CentralityResults results = new CentralityResults(graph);
