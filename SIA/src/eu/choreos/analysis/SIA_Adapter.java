@@ -10,10 +10,10 @@ import eu.choreos.middleware.entity.ChoreographyModel;
 
 public class SIA_Adapter implements SIA{
 
-	private DependencyAnalyzer depAnalyzer;
+	private JungAnalyzer depAnalyzer;
 	
 	public SIA_Adapter(){
-		depAnalyzer = new DependencyAnalyzer();
+		depAnalyzer = new JungAnalyzer();
 	}
 	
 	@Override

@@ -1,35 +1,66 @@
 package eu.choreos.analysis.entity;
 
-public class CentralityResults {
+import java.util.Collections;
+import java.util.Map;
 
-	private double betweenessCentrality;
+import edu.uci.ics.jung.graph.DirectedGraph;
+import eu.choreos.analysis.graph.Edge;
+import eu.choreos.analysis.graph.Vertex;
+
+public class CentralityResults implements CentralityAnalysis {
+
+	private final DirectedGraph<Vertex, Edge> graph;
+	private DegreeCentrality graphDegreeCentrality;
+	private Map<Vertex, DegreeCentrality> verticesDegreeCentrality;
+	private Map<Vertex, Double> verticesBetweenessCentrality;
+	private Map<Vertex, Double> verticesClosenessCentrality;
 	
-	private double closenessCentrality;
-	
-	private double degreeCentrality;
-	
-	public double getBetweenessCentrality() {
-		return betweenessCentrality;
+	public CentralityResults(DirectedGraph<Vertex, Edge> graph) {
+		this.graph = graph;
 	}
 	
-	public void setBetweenessCentrality(double betweenessCentrality) {
-		this.betweenessCentrality = betweenessCentrality;
+	@Override
+	public DirectedGraph<Vertex, Edge> getAnalyzedGraph() {
+		return graph;
 	}
-	
-	public double getClosenessCentrality() {
-		return closenessCentrality;
+
+	@Override
+	public DegreeCentrality getGraphDegreeCentrality() {
+		return graphDegreeCentrality;
 	}
-	
-	public void setClosenessCentrality(double closenessCentrality) {
-		this.closenessCentrality = closenessCentrality;
+
+	@Override
+	public Map<Vertex, DegreeCentrality> getVerticesDegreeCentrality() {
+		return Collections.unmodifiableMap(verticesDegreeCentrality);
 	}
-	
-	public double getDegreeCentrality() {
-		return degreeCentrality;
+
+	@Override
+	public Map<Vertex, Double> getVerticesBetweenessCentrality() {
+		return Collections.unmodifiableMap(verticesBetweenessCentrality);
 	}
-	
-	public void setDegreeCentrality(double degreeCentrality) {
-		this.degreeCentrality = degreeCentrality;
+
+	@Override
+	public Map<Vertex, Double> getVerticesClosenessCentrality() {
+		return Collections.unmodifiableMap(verticesClosenessCentrality);
 	}
+
 	
+	public void setGraphDegreeCentrality(DegreeCentrality graphDegreeCentrality) {
+		this.graphDegreeCentrality = graphDegreeCentrality;
+	}
+
+	public void setVerticesDegreeCentrality(
+			Map<Vertex, DegreeCentrality> verticesDegreeCentrality) {
+		this.verticesDegreeCentrality = verticesDegreeCentrality;
+	}
+
+	public void setVerticesBetweenessCentrality(
+			Map<Vertex, Double> verticesBetweenessCentrality) {
+		this.verticesBetweenessCentrality = verticesBetweenessCentrality;
+	}
+
+	public void setVerticesClosenessCentrality(
+			Map<Vertex, Double> verticesClosenessCentrality) {
+		this.verticesClosenessCentrality = verticesClosenessCentrality;
+	}
 }
