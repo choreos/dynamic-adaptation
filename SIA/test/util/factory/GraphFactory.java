@@ -43,10 +43,22 @@ public class GraphFactory {
 		vDegCent.put(a, new DegreeCentrality(0.5, 1));
 		vDegCent.put(b, new DegreeCentrality(0.5, 0.5));
 		vDegCent.put(c, new DegreeCentrality(0.5, 0));
-		
+
+		Map<Vertex, Double> vClosCent = new HashMap<Vertex, Double>();
+		vClosCent.put(a, 0.5);
+		vClosCent.put(b, 1/3d);
+		vClosCent.put(c, 0d);
+
+		Map<Vertex, Double> vBetwCent = new HashMap<Vertex, Double>();
+		vBetwCent.put(a, 1d);
+		vBetwCent.put(b, 0d);
+		vBetwCent.put(c, 0d);
+
 		CentralityResults results = new CentralityResults(graph);
 		results.setVerticesDegreeCentrality(vDegCent);
 		results.setGraphDegreeCentrality(new DegreeCentrality(0, 0.75));
+		results.setVerticesClosenessCentrality(vClosCent);
+		results.setVerticesBetweenessCentrality(vBetwCent);
 		
 		centrality = results;
 	}

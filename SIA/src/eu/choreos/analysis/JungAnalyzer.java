@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.uci.ics.jung.algorithms.importance.BetweennessCentrality;
+import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
 import edu.uci.ics.jung.algorithms.scoring.ClosenessCentrality;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
@@ -45,6 +45,8 @@ public class JungAnalyzer implements DependencyAnalyzer {
 		CentralityResults centralityResults = new CentralityResults(graph);
 		centralityResults.setVerticesDegreeCentrality(this.calculateVerticesDegreeCentrality());
 		centralityResults.setGraphDegreeCentrality(this.calculateGraphDegreeCentrality());
+		centralityResults.setVerticesClosenessCentrality(this.calculateVerticesClosenessCentrality());
+		centralityResults.setVerticesBetweenessCentrality(this.calculateVerticesBetweennessCentrality());
 		
 		return centralityResults;
 	}
@@ -54,7 +56,6 @@ public class JungAnalyzer implements DependencyAnalyzer {
 	private Map<Vertex, DegreeCentrality> calculateVerticesDegreeCentrality() {
 		
 		Map<Vertex, DegreeCentrality> vDegCen = new HashMap<Vertex, DegreeCentrality>();
-		
 		int n = graph.getVertexCount();
 		for (Vertex v: graph.getVertices()) {
 			double in = (double) graph.getInEdges(v).size() / (n-1);
@@ -68,7 +69,6 @@ public class JungAnalyzer implements DependencyAnalyzer {
 	private double getHighestInDegreeCentrality() {
 		
 		Collection<DegreeCentrality> centralities = calculateVerticesDegreeCentrality().values();
-		
 		double highest = 0;
 		for (DegreeCentrality dc: centralities) {
 			if (dc.getInCentrality() > highest)
@@ -81,7 +81,6 @@ public class JungAnalyzer implements DependencyAnalyzer {
 	private double getHighestOutDegreeCentrality() {
 		
 		Collection<DegreeCentrality> centralities = calculateVerticesDegreeCentrality().values();
-		
 		double highest = 0;
 		for (DegreeCentrality dc: centralities) {
 			if (dc.getOutCentrality() > highest)
@@ -108,27 +107,26 @@ public class JungAnalyzer implements DependencyAnalyzer {
 		return new DegreeCentrality(in/den, out/den);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	private void calculateCloseness(DirectedGraph<Vertex, Edge> graph){
-		ClosenessCentrality closenessCentrality = new ClosenessCentrality(graph);
+	private Map<Vertex, Double> calculateVerticesClosenessCentrality(){
+		
+		Map<Vertex, Double> centralities = new HashMap<Vertex, Double>();
+		ClosenessCentrality<Vertex, Edge> closenessCentrality = new ClosenessCentrality<Vertex, Edge>(graph);
 		for(Vertex v : graph.getVertices()){
-			closenessCentrality.getVertexScore(v);
+			centralities.put(v, closenessCentrality.getVertexScore(v));
 		}
+		
+		return centralities;
 	}
 	
-	private void calculateBetweenness(DirectedGraph<Vertex, Edge> graph){
-		BetweennessCentrality ranker = new BetweennessCentrality(graph);
-		ranker.evaluate();
+	private Map<Vertex, Double> calculateVerticesBetweennessCentrality(){
+
+		Map<Vertex, Double> centralities = new HashMap<Vertex, Double>();
+		BetweennessCentrality<Vertex, Edge> ranker = new BetweennessCentrality<Vertex, Edge>(graph);
+		for(Vertex v : graph.getVertices()){
+			centralities.put(v, ranker.getVertexScore(v));
+		}
+
+		return centralities;
 	}
+	
 }

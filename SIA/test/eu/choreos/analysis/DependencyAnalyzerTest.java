@@ -67,4 +67,26 @@ public class DependencyAnalyzerTest {
 		assertEquals(expected, calculated);
 	}
 	
+	@Test
+	public void shouldCalculateVerticesClosenessCentrality() {
+		
+		Map<Vertex, Double> expected = expectedCentrality.getVerticesClosenessCentrality();
+		Map<Vertex, Double> calculated = actualCentrality.getVerticesClosenessCentrality();
+		
+		for (Vertex v: expected.keySet()) {
+			assertEquals(expected.get(v), calculated.get(v));
+		}		
+	}
+
+	@Test
+	public void shouldCalculateVerticesBetweenessCentrality() {
+		
+		Map<Vertex, Double> expected = expectedCentrality.getVerticesBetweenessCentrality();
+		Map<Vertex, Double> calculated = actualCentrality.getVerticesBetweenessCentrality();
+		
+		for (Vertex v: expected.keySet()) {
+			assertEquals(expected.get(v), calculated.get(v));
+		}		
+	}
+
 }
