@@ -1,5 +1,13 @@
 package eu.choreos.analysis.entity;
 
+/**
+ * In a directed graph we remark the difference between
+ * "in centrality", which considers the incoming edges of a vertex,
+ * and "out centrality", which considers the outgoing edges of a vertex
+ * 
+ * @author leofl
+ *
+ */
 public class DegreeCentrality {
 
 	private final double inCentrality;

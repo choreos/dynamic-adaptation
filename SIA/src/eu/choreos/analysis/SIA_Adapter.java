@@ -25,7 +25,7 @@ public class SIA_Adapter implements SIA{
 		
 		DirectedGraph<Vertex,Edge> graph = null;
 		OverallStabilityResults results = 
-			depAnalyzer.calculateOverallStability(graph);
+			depAnalyzer.calculateOverallStability();
 		
 		return results;
 	}
@@ -36,7 +36,7 @@ public class SIA_Adapter implements SIA{
 		
 		DirectedGraph<Vertex,Edge> graph = null;
 		OverallStabilityResults results = 
-			depAnalyzer.calculateOverallStability(graph);
+			depAnalyzer.calculateOverallStability();
 		
 		return results;
 	}
@@ -47,7 +47,7 @@ public class SIA_Adapter implements SIA{
 
 		DirectedGraph<Vertex,Edge> graph = null;
 		CentralityAnalysis results =	
-			depAnalyzer.calculateCentralityAnalysis(graph);
+			depAnalyzer.calculateCentralityAnalysis();
 		
 		return results;
 	}
@@ -58,7 +58,7 @@ public class SIA_Adapter implements SIA{
 		
 		DirectedGraph<Vertex,Edge> graph = null;
 		CentralityAnalysis results =	
-			depAnalyzer.calculateCentralityAnalysis(graph);
+			depAnalyzer.calculateCentralityAnalysis();
 		
 		return results;
 	}

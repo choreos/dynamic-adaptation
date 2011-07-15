@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -17,6 +18,21 @@ import eu.choreos.analysis.graph.Vertex;
 
 public class DependencyAnalyzerTest {
 
+	DependencyAnalyzer analyzer;
+	DirectedGraph<Vertex, Edge> graph;
+	CentralityAnalysis expectedCentrality;
+	CentralityAnalysis actualCentrality;
+	
+	@Before
+	public void setUp() {
+		
+		GraphFactory factory = new GraphFactory();
+		graph = factory.createDependencyGraph();
+		expectedCentrality = factory.createCentralityResults();		
+		analyzer = new JungAnalyzer(graph);
+		actualCentrality = analyzer.calculateCentralityAnalysis();		
+	}
+	
 	@Test
 	@Ignore
 	public void shouldCalculateOverallStability() {
@@ -24,10 +40,10 @@ public class DependencyAnalyzerTest {
 		GraphFactory graphFactory = new GraphFactory();
 		DirectedGraph<Vertex, Edge> dependencyGraph = graphFactory.createDependencyGraph();
 		
-		JungAnalyzer depAnalyzer = new JungAnalyzer();
+		JungAnalyzer depAnalyzer = new JungAnalyzer(dependencyGraph);
 		
 		OverallStabilityResults overallStabilityResults = 
-			depAnalyzer.calculateOverallStability(dependencyGraph);
+			depAnalyzer.calculateOverallStability();
 		
 		assertEquals(0.8, overallStabilityResults);
 	}
@@ -35,23 +51,20 @@ public class DependencyAnalyzerTest {
 	@Test
 	public void shouldCalculateVerticeDegreeCentrality() {
 		
-		// graph
-		GraphFactory factory = new GraphFactory();
-		DirectedGraph<Vertex, Edge> graph = factory.createDependencyGraph();
+		Map<Vertex, DegreeCentrality> expected = expectedCentrality.getVerticesDegreeCentrality();
+		Map<Vertex, DegreeCentrality> calculated = actualCentrality.getVerticesDegreeCentrality();
 		
-		// expected
-		CentralityAnalysis centralityExpected = factory.createCentralityResults();
-		Map<Vertex, DegreeCentrality> expected = centralityExpected.getVerticesDegreeCentrality();
-		
-		// calculated
-		DependencyAnalyzer analyzer = new JungAnalyzer();
-		CentralityAnalysis analysis = analyzer.calculateCentralityAnalysis(graph);
-		Map<Vertex, DegreeCentrality> calculated = analysis.getVerticesDegreeCentrality();
-		
-		// test
 		for (Vertex v: expected.keySet()) {
 			assertEquals(expected.get(v), calculated.get(v));
 		}
+	}
+	
+	@Test
+	public void shouldCalculateGraphDegreeCentrality() {
+		
+		DegreeCentrality expected = expectedCentrality.getGraphDegreeCentrality();
+		DegreeCentrality calculated = actualCentrality.getGraphDegreeCentrality();
+		assertEquals(expected, calculated);
 	}
 	
 }

@@ -46,6 +46,7 @@ public class GraphFactory {
 		
 		CentralityResults results = new CentralityResults(graph);
 		results.setVerticesDegreeCentrality(vDegCent);
+		results.setGraphDegreeCentrality(new DegreeCentrality(0, 0.75));
 		
 		centrality = results;
 	}

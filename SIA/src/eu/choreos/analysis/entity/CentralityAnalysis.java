@@ -14,14 +14,34 @@ import eu.choreos.analysis.graph.Vertex;
  */
 public interface CentralityAnalysis {
 	
+	/**
+	 * Returns the graph used to calculate the metrics
+	 * @return the analyzed graph
+	 */
 	public DirectedGraph<Vertex, Edge> getAnalyzedGraph();
 	
+	/**
+	 * Returns the degree centrality of the whole graph
+	 * @return the graph degree centrality
+	 */
 	public DegreeCentrality getGraphDegreeCentrality();
 
+	/**
+	 * Returns the degree centrality of each vertex of the graph
+	 * @return a map with the relation between each vertex and its degree centrality
+	 */
 	public Map<Vertex, DegreeCentrality> getVerticesDegreeCentrality();
 
+	/**
+	 * Returns the betweeness centrality of each vertex of the graph
+	 * @return a map with the relation between each vertex and its betweeness centrality
+	 */
 	public Map<Vertex, Double> getVerticesBetweenessCentrality();
 
+	/**
+	 * Returns the closeness centrality of each vertex of the graph
+	 * @return a map with the relation between each vertex and its closeness centrality
+	 */
 	public Map<Vertex, Double> getVerticesClosenessCentrality();
 
 }

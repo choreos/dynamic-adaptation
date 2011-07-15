@@ -1,5 +1,6 @@
 package eu.choreos.analysis;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,25 +16,42 @@ import eu.choreos.analysis.graph.Vertex;
 
 public class JungAnalyzer implements DependencyAnalyzer {
 	
-	public JungAnalyzer(){
-		
+	// TODO:  in this class we have some heavy computations
+	// would be nice having some caching...
+	
+	DirectedGraph<Vertex, Edge> graph;
+	
+	public JungAnalyzer() {
 	}
 
-	public OverallStabilityResults calculateOverallStability(DirectedGraph<Vertex, Edge> graph){
-		return null;		
+	public JungAnalyzer(DirectedGraph<Vertex, Edge> graph) {
+		this.graph = graph;
+	}
+
+	public DirectedGraph<Vertex, Edge> getGraph() {
+		return graph;
+	}
+
+	public void setGraph(DirectedGraph<Vertex, Edge> graph) {
+		this.graph = graph;
+	}
+
+	public OverallStabilityResults calculateOverallStability(){
+		throw new UnsupportedOperationException("Not implemented yet");
 	}
 	
-	public CentralityAnalysis calculateCentralityAnalysis(DirectedGraph<Vertex, Edge> graph){
+	public CentralityAnalysis calculateCentralityAnalysis(){
 		
 		CentralityResults centralityResults = new CentralityResults(graph);
-		centralityResults.setVerticesDegreeCentrality(this.calculateVerticesDegreeCentrality(graph));
+		centralityResults.setVerticesDegreeCentrality(this.calculateVerticesDegreeCentrality());
+		centralityResults.setGraphDegreeCentrality(this.calculateGraphDegreeCentrality());
 		
 		return centralityResults;
 	}
 	
 	
 	
-	private Map<Vertex, DegreeCentrality> calculateVerticesDegreeCentrality(DirectedGraph<Vertex, Edge> graph) {
+	private Map<Vertex, DegreeCentrality> calculateVerticesDegreeCentrality() {
 		
 		Map<Vertex, DegreeCentrality> vDegCen = new HashMap<Vertex, DegreeCentrality>();
 		
@@ -46,6 +64,61 @@ public class JungAnalyzer implements DependencyAnalyzer {
 		
 		return vDegCen;
 	}
+	
+	private double getHighestInDegreeCentrality() {
+		
+		Collection<DegreeCentrality> centralities = calculateVerticesDegreeCentrality().values();
+		
+		double highest = 0;
+		for (DegreeCentrality dc: centralities) {
+			if (dc.getInCentrality() > highest)
+				highest = dc.getInCentrality();
+		}
+		
+		return highest;
+	}
+
+	private double getHighestOutDegreeCentrality() {
+		
+		Collection<DegreeCentrality> centralities = calculateVerticesDegreeCentrality().values();
+		
+		double highest = 0;
+		for (DegreeCentrality dc: centralities) {
+			if (dc.getOutCentrality() > highest)
+				highest = dc.getOutCentrality();
+		}
+		
+		return highest;
+	}
+
+	private DegreeCentrality calculateGraphDegreeCentrality() {
+		
+		Map<Vertex, DegreeCentrality> centralities = calculateVerticesDegreeCentrality();
+		double highestIn = getHighestInDegreeCentrality();
+		double highestOut = getHighestOutDegreeCentrality();
+
+		double in = 0, out = 0;
+		for (Vertex v: graph.getVertices()) {
+			in += highestIn - centralities.get(v).getInCentrality();  
+			out += highestOut - centralities.get(v).getOutCentrality();  
+		}
+		
+		int den = (graph.getVertexCount() - 1) * (graph.getVertexCount() - 2);
+		
+		return new DegreeCentrality(in/den, out/den);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private void calculateCloseness(DirectedGraph<Vertex, Edge> graph){
 		ClosenessCentrality closenessCentrality = new ClosenessCentrality(graph);
