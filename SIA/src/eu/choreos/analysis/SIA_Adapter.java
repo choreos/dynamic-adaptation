@@ -2,7 +2,7 @@ package eu.choreos.analysis;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
-import eu.choreos.analysis.entity.OverallStabilityResults;
+import eu.choreos.analysis.entity.StabilityResults;
 import eu.choreos.analysis.graph.Edge;
 import eu.choreos.analysis.graph.Vertex;
 import eu.choreos.middleware.entity.BehaviorProtocolAutomaton;
@@ -17,26 +17,26 @@ public class SIA_Adapter implements SIA{
 	}
 	
 	@Override
-	public OverallStabilityResults calculateOverallStability(
+	public StabilityResults calculateOverallStability(
 			ChoreographyModel choreographyModel) {
 		
 		//TODO: Convert from a choreographyModel (BPMN2 in memory 
 		//representation) to a directed graph		
 		
 		DirectedGraph<Vertex,Edge> graph = null;
-		OverallStabilityResults results = 
-			depAnalyzer.calculateOverallStability();
+		StabilityResults results = 
+			depAnalyzer.calculateStabilityAnalysis();
 		
 		return results;
 	}
 
 	@Override
-	public OverallStabilityResults calculateOverallStability(
+	public StabilityResults calculateOverallStability(
 			BehaviorProtocolAutomaton behaviorProtocolAutomaton) {
 		
 		DirectedGraph<Vertex,Edge> graph = null;
-		OverallStabilityResults results = 
-			depAnalyzer.calculateOverallStability();
+		StabilityResults results = 
+			depAnalyzer.calculateStabilityAnalysis();
 		
 		return results;
 	}

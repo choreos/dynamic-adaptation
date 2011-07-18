@@ -2,7 +2,7 @@ package eu.choreos.analysis;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
-import eu.choreos.analysis.entity.OverallStabilityResults;
+import eu.choreos.analysis.entity.StabilityResults;
 import eu.choreos.analysis.graph.Edge;
 import eu.choreos.analysis.graph.Vertex;
 
@@ -20,7 +20,7 @@ public interface DependencyAnalyzer {
 	 * Calculates stability metrics of the given graph
 	 * @return
 	 */
-	public OverallStabilityResults calculateOverallStability();
+	public StabilityResults calculateStabilityAnalysis();
 	
 	/**
 	 * Calculates centrality metrics of the given graph

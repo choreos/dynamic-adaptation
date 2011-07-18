@@ -8,6 +8,8 @@ import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.CentralityResults;
 import eu.choreos.analysis.entity.DegreeCentrality;
+import eu.choreos.analysis.entity.StabilityAnalysis;
+import eu.choreos.analysis.entity.StabilityResults;
 import eu.choreos.analysis.graph.Edge;
 import eu.choreos.analysis.graph.Vertex;
 
@@ -15,6 +17,7 @@ public class GraphFactory {
 
 	private DirectedGraph<Vertex,Edge> graph;
 	private CentralityAnalysis centrality;
+	private StabilityAnalysis stability;
 	
 	public GraphFactory() {
 		
@@ -61,6 +64,8 @@ public class GraphFactory {
 		results.setVerticesBetweenessCentrality(vBetwCent);
 		
 		centrality = results;
+		
+		stability = new StabilityResults(200/3d);
 	}
 	
 	public DirectedGraph<Vertex,Edge> createDependencyGraph(){
@@ -73,4 +78,8 @@ public class GraphFactory {
 		return centrality;
 	}
 	
+	public StabilityAnalysis createStabilityResults() {
+		
+		return stability;
+	}
 }

@@ -10,7 +10,7 @@ import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.CentralityResults;
 import eu.choreos.analysis.entity.DegreeCentrality;
-import eu.choreos.analysis.entity.OverallStabilityResults;
+import eu.choreos.analysis.entity.StabilityResults;
 import eu.choreos.analysis.graph.Edge;
 import eu.choreos.analysis.graph.Vertex;
 
@@ -19,7 +19,7 @@ public class JungAnalyzer implements DependencyAnalyzer {
 	// TODO:  in this class we have some heavy computations
 	// would be nice having some caching...
 	
-	DirectedGraph<Vertex, Edge> graph;
+	private DirectedGraph<Vertex, Edge> graph;
 	
 	public JungAnalyzer() {
 	}
@@ -36,11 +36,36 @@ public class JungAnalyzer implements DependencyAnalyzer {
 		this.graph = graph;
 	}
 
-	public OverallStabilityResults calculateOverallStability(){
-		throw new UnsupportedOperationException("Not implemented yet");
+	
+	public StabilityResults calculateStabilityAnalysis(){
+		
+		if (this.graph == null)
+			throw new IllegalStateException("The graph should not be null");
+
+		// this is the overall stability algorithm of the Gustavo's slides
+		
+		int impactAll = 0;
+		Map<Vertex, Integer> impact = new HashMap<Vertex, Integer>();
+		
+		for (Vertex v: this.graph.getVertices()) {
+			
+			int inpac = this.graph.getPredecessorCount(v);
+			impact.put(v, inpac);
+			impactAll += inpac;
+		}
+
+		int numServices = this.graph.getVertexCount();
+		double avgImpact = impactAll / numServices;
+		double percAvgImpact = (avgImpact / numServices) * 100;
+		double overallStability = 100 - percAvgImpact;
+		
+		return new StabilityResults(overallStability);
 	}
 	
 	public CentralityAnalysis calculateCentralityAnalysis(){
+		
+		if (this.graph == null)
+			throw new IllegalStateException("The graph should not be null");		
 		
 		CentralityResults centralityResults = new CentralityResults(graph);
 		centralityResults.setVerticesDegreeCentrality(this.calculateVerticesDegreeCentrality());
