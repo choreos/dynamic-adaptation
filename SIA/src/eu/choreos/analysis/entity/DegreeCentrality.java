@@ -10,6 +10,9 @@ package eu.choreos.analysis.entity;
  */
 public class DegreeCentrality {
 
+	// required precision to equivalence
+	private final double EPSILON = 0.0001;
+	
 	private final double inCentrality;
 	private final double outCentrality;
 	// there could be a "total centrality"?
@@ -48,11 +51,9 @@ public class DegreeCentrality {
 		if (getClass() != obj.getClass())
 			return false;
 		DegreeCentrality other = (DegreeCentrality) obj;
-		if (Double.doubleToLongBits(inCentrality) != Double
-				.doubleToLongBits(other.inCentrality))
+		if (Math.abs(inCentrality - other.inCentrality) > EPSILON)
 			return false;
-		if (Double.doubleToLongBits(outCentrality) != Double
-				.doubleToLongBits(other.outCentrality))
+		if (Math.abs(outCentrality - other.outCentrality) > EPSILON)
 			return false;
 		return true;
 	}

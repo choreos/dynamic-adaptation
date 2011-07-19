@@ -4,7 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import util.factory.GraphFactory;
+import tests.util.GraphFactory;
+import tests.util.GraphFactory.TestGraph;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.StabilityAnalysis;
 import eu.choreos.analysis.graph.Edge;
@@ -16,9 +17,9 @@ public class StabilityTest {
 	public void shouldCalculateOverallStability() {
 		
 		GraphFactory factory = new GraphFactory();
-		DirectedGraph<Vertex, Edge> graph = factory.createDependencyGraph();
+		DirectedGraph<Vertex, Edge> graph = factory.getSimpleGraph(TestGraph.SIMPLE);
 		
-		StabilityAnalysis expectedStability = factory.createStabilityResults();
+		StabilityAnalysis expectedStability = factory.getSimpleStabilityAnalysis(TestGraph.SIMPLE);
 		
 		JungAnalyzer depAnalyzer = new JungAnalyzer(graph);
 		StabilityAnalysis actualStability = depAnalyzer.calculateStabilityAnalysis();

@@ -11,12 +11,12 @@ import eu.choreos.analysis.graph.Edge;
 import eu.choreos.analysis.graph.Vertex;
 
 /**
- * Tests the centralities calculations with a very simple graph
+ * Tests the centralities calculations with a graph more complex (but not so much)
  * 
  * @author leofl
  *
  */
-public class CentralitySimpleTest {
+public class CentralityComplexTest {
 
 	private DependencyAnalyzer analyzer;
 	private DirectedGraph<Vertex, Edge> graph;
@@ -27,8 +27,8 @@ public class CentralitySimpleTest {
 	public void setUp() {
 		
 		GraphFactory factory = new GraphFactory();
-		graph = factory.getSimpleGraph(TestGraph.SIMPLE);
-		expectedCentrality = factory.getSimpleCentralityAnalysis(TestGraph.SIMPLE);		
+		graph = factory.getSimpleGraph(TestGraph.COMPLEX);
+		expectedCentrality = factory.getSimpleCentralityAnalysis(TestGraph.COMPLEX);		
 		analyzer = new JungAnalyzer(graph);
 		actualCentrality = analyzer.calculateCentralityAnalysis();		
 	}
@@ -38,23 +38,11 @@ public class CentralitySimpleTest {
 
 		CentralityBaseTests.shouldCalculateVerticeDegreeCentrality(expectedCentrality, actualCentrality);
 	}
-	
+
 	@Test
 	public void shouldCalculateGraphDegreeCentrality() {
 		
 		CentralityBaseTests.shouldCalculateGraphDegreeCentrality(expectedCentrality, actualCentrality);
 	}
 	
-	@Test
-	public void shouldCalculateVerticesClosenessCentrality() {
-		
-		CentralityBaseTests.shouldCalculateVerticesClosenessCentrality(expectedCentrality, actualCentrality);
-	}
-
-	@Test
-	public void shouldCalculateVerticesBetweenessCentrality() {
-		
-		CentralityBaseTests.shouldCalculateVerticesBetweenessCentrality(expectedCentrality, actualCentrality);
-	}
-
 }
