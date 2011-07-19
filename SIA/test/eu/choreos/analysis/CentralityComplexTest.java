@@ -45,4 +45,10 @@ public class CentralityComplexTest {
 		CentralityBaseTests.shouldCalculateGraphDegreeCentrality(expectedCentrality, actualCentrality);
 	}
 	
+	@Test
+	public void shouldCalculateVerticesBetweenessCentrality() {
+		
+		CentralityBaseTests.shouldCalculateVerticesBetweenessCentrality(expectedCentrality, actualCentrality);
+	}
+	
 }

@@ -55,7 +55,7 @@ public class JungAnalyzer implements DependencyAnalyzer {
 		}
 
 		int numServices = this.graph.getVertexCount();
-		double avgImpact = impactAll / numServices;
+		double avgImpact = (double) impactAll / numServices;
 		double percAvgImpact = (avgImpact / numServices) * 100;
 		double overallStability = 100 - percAvgImpact;
 		

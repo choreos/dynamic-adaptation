@@ -161,15 +161,22 @@ public class GraphFactory {
 //		vClosCent.put(a, 0.5);
 
 		Map<Vertex, Double> vBetwCent = new HashMap<Vertex, Double>();
-//		vBetwCent.put(a, 1d);
+		vBetwCent.put(a, 5d);
+		vBetwCent.put(b, 0d);
+		vBetwCent.put(c, 2d);
+		vBetwCent.put(d, 0d);
+		vBetwCent.put(e, 3d);
+		vBetwCent.put(f, 0d);
+		vBetwCent.put(g, 0d);
+		vBetwCent.put(h, 0d);
 
 		CentralityResults centralityAnalysis = new CentralityResults(graph);
 		centralityAnalysis.setVerticesDegreeCentrality(vDegCent);
 		centralityAnalysis.setGraphDegreeCentrality(new DegreeCentrality(0.0306, 0.0578)); 
 		centralityAnalysis.setVerticesClosenessCentrality(vClosCent); // TODO
-		centralityAnalysis.setVerticesBetweenessCentrality(vBetwCent); // TODO
+		centralityAnalysis.setVerticesBetweenessCentrality(vBetwCent); 
 		
-		StabilityAnalysis stabilityAnalysis = new StabilityResults(0); // TODO
+		StabilityAnalysis stabilityAnalysis = new StabilityResults(89.0625); 
 		
 		graphs.put(TestGraph.COMPLEX, graph);
 		centralities.put(TestGraph.COMPLEX, centralityAnalysis);
