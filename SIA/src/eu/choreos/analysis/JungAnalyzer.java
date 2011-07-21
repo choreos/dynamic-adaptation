@@ -18,6 +18,7 @@ public class JungAnalyzer implements DependencyAnalyzer {
 	
 	// TODO:  in this class we have some heavy computations
 	// would be nice having some caching...
+	// hint: JUNG API provides a Caching interface
 	
 	private DirectedGraph<Vertex, Edge> graph;
 	
@@ -43,6 +44,9 @@ public class JungAnalyzer implements DependencyAnalyzer {
 			throw new IllegalStateException("The graph should not be null");
 
 		// this is the overall stability algorithm of the Gustavo's slides
+		
+		// TODO: impact should be transitive
+		// think how to use Distance and ShortestPath JUNG features
 		
 		int impactAll = 0;
 		Map<Vertex, Integer> impact = new HashMap<Vertex, Integer>();

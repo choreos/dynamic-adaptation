@@ -102,7 +102,7 @@ public class GraphFactory {
 		centralityAnalysis.setVerticesClosenessCentrality(vClosCent);
 		centralityAnalysis.setVerticesBetweenessCentrality(vBetwCent);
 		
-		StabilityAnalysis stabilityAnalysis = new StabilityResults(200/3d);
+		StabilityAnalysis stabilityAnalysis = new StabilityResults(55.5555);
 		
 		graphs.put(TestGraph.SIMPLE, graph);
 		centralities.put(TestGraph.SIMPLE, centralityAnalysis);
@@ -176,7 +176,7 @@ public class GraphFactory {
 		centralityAnalysis.setVerticesClosenessCentrality(vClosCent); // TODO
 		centralityAnalysis.setVerticesBetweenessCentrality(vBetwCent); 
 		
-		StabilityAnalysis stabilityAnalysis = new StabilityResults(89.0625); 
+		StabilityAnalysis stabilityAnalysis = new StabilityResults(76.5625); 
 		
 		graphs.put(TestGraph.COMPLEX, graph);
 		centralities.put(TestGraph.COMPLEX, centralityAnalysis);
