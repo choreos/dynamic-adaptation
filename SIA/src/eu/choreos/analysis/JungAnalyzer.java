@@ -6,6 +6,8 @@ import java.util.Map;
 
 import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
 import edu.uci.ics.jung.algorithms.scoring.ClosenessCentrality;
+import edu.uci.ics.jung.algorithms.shortestpath.DijkstraDistance;
+import edu.uci.ics.jung.algorithms.shortestpath.Distance;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.CentralityResults;
@@ -45,15 +47,12 @@ public class JungAnalyzer implements DependencyAnalyzer {
 
 		// this is the overall stability algorithm of the Gustavo's slides
 		
-		// TODO: impact should be transitive
-		// think how to use Distance and ShortestPath JUNG features
-		
 		int impactAll = 0;
 		Map<Vertex, Integer> impact = new HashMap<Vertex, Integer>();
 		
 		for (Vertex v: this.graph.getVertices()) {
 			
-			int inpac = this.graph.getPredecessorCount(v);
+			int inpac = this.calculateImpact(v);
 			impact.put(v, inpac);
 			impactAll += inpac;
 		}
@@ -64,6 +63,19 @@ public class JungAnalyzer implements DependencyAnalyzer {
 		double overallStability = 100 - percAvgImpact;
 		
 		return new StabilityResults(overallStability);
+	}
+	
+	// impact is transitive
+	private int calculateImpact(Vertex vertex) {
+		
+		int impact = 0;
+		Distance<Vertex> distance = new DijkstraDistance<Vertex, Edge>(this.graph);
+		for (Vertex v: this.graph.getVertices()) {
+			Number d = distance.getDistance(v, vertex);
+			if (d != null && d.doubleValue() > 0)
+				impact++;
+		}
+		return impact;
 	}
 	
 	public CentralityAnalysis calculateCentralityAnalysis(){
