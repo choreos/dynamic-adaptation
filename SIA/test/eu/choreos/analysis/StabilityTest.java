@@ -8,8 +8,6 @@ import tests.util.GraphFactory;
 import tests.util.GraphFactory.TestGraph;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.StabilityAnalysis;
-import eu.choreos.analysis.graph.Edge;
-import eu.choreos.analysis.graph.Vertex;
 
 public class StabilityTest {
 
@@ -17,11 +15,11 @@ public class StabilityTest {
 	public void shouldCalculateSimpleOverallStability() {
 		
 		GraphFactory factory = new GraphFactory();
-		DirectedGraph<Vertex, Edge> graph = factory.getSimpleGraph(TestGraph.SIMPLE);
+		DirectedGraph<String,String> graph = factory.getSimpleGraph(TestGraph.SIMPLE);
 		
 		StabilityAnalysis expectedStability = factory.getSimpleStabilityAnalysis(TestGraph.SIMPLE);
 		
-		JungAnalyzer depAnalyzer = new JungAnalyzer(graph);
+		JungAnalyzer<String,String> depAnalyzer = new JungAnalyzer<String,String>(graph);
 		StabilityAnalysis actualStability = depAnalyzer.calculateStabilityAnalysis();
 		
 		assertEquals(expectedStability.getOverallStability(),
@@ -32,11 +30,11 @@ public class StabilityTest {
 	public void shouldCalculateComplexOverallStability() {
 		
 		GraphFactory factory = new GraphFactory();
-		DirectedGraph<Vertex, Edge> graph = factory.getSimpleGraph(TestGraph.COMPLEX);
+		DirectedGraph<String,String> graph = factory.getSimpleGraph(TestGraph.COMPLEX);
 		
 		StabilityAnalysis expectedStability = factory.getSimpleStabilityAnalysis(TestGraph.COMPLEX);
 		
-		JungAnalyzer depAnalyzer = new JungAnalyzer(graph);
+		JungAnalyzer<String,String> depAnalyzer = new JungAnalyzer<String,String>(graph);
 		StabilityAnalysis actualStability = depAnalyzer.calculateStabilityAnalysis();
 		
 		assertEquals(expectedStability.getOverallStability(),

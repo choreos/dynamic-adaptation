@@ -7,8 +7,6 @@ import tests.util.GraphFactory;
 import tests.util.GraphFactory.TestGraph;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
-import eu.choreos.analysis.graph.Edge;
-import eu.choreos.analysis.graph.Vertex;
 
 /**
  * Tests the centralities calculations with a graph more complex (but not so much)
@@ -18,10 +16,10 @@ import eu.choreos.analysis.graph.Vertex;
  */
 public class CentralityComplexTest {
 
-	private DependencyAnalyzer analyzer;
-	private DirectedGraph<Vertex, Edge> graph;
-	private CentralityAnalysis expectedCentrality;
-	private CentralityAnalysis actualCentrality;
+	private DependencyAnalyzer<String,String> analyzer;
+	private DirectedGraph<String,String> graph;
+	private CentralityAnalysis<String,String> expectedCentrality;
+	private CentralityAnalysis<String,String> actualCentrality;
 	
 	@Before
 	public void setUp() {
@@ -29,7 +27,7 @@ public class CentralityComplexTest {
 		GraphFactory factory = new GraphFactory();
 		graph = factory.getSimpleGraph(TestGraph.COMPLEX);
 		expectedCentrality = factory.getSimpleCentralityAnalysis(TestGraph.COMPLEX);		
-		analyzer = new JungAnalyzer(graph);
+		analyzer = new JungAnalyzer<String,String>(graph);
 		actualCentrality = analyzer.calculateCentralityAnalysis();		
 	}
 	

@@ -4,23 +4,21 @@ import java.util.Collections;
 import java.util.Map;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
-import eu.choreos.analysis.graph.Edge;
-import eu.choreos.analysis.graph.Vertex;
 
-public class CentralityResults implements CentralityAnalysis {
+public class CentralityResults<V, E> implements CentralityAnalysis<V, E> {
 
-	private final DirectedGraph<Vertex, Edge> graph;
+	private final DirectedGraph<V, E> graph;
 	private DegreeCentrality graphDegreeCentrality;
-	private Map<Vertex, DegreeCentrality> verticesDegreeCentrality;
-	private Map<Vertex, Double> verticesBetweenessCentrality;
-	private Map<Vertex, Double> verticesClosenessCentrality;
+	private Map<V, DegreeCentrality> verticesDegreeCentrality;
+	private Map<V, Double> verticesBetweenessCentrality;
+	private Map<V, Double> verticesClosenessCentrality;
 	
-	public CentralityResults(DirectedGraph<Vertex, Edge> graph) {
+	public CentralityResults(DirectedGraph<V, E> graph) {
 		this.graph = graph;
 	}
 	
 	@Override
-	public DirectedGraph<Vertex, Edge> getAnalyzedGraph() {
+	public DirectedGraph<V, E> getAnalyzedGraph() {
 		return graph;
 	}
 
@@ -30,17 +28,17 @@ public class CentralityResults implements CentralityAnalysis {
 	}
 
 	@Override
-	public Map<Vertex, DegreeCentrality> getVerticesDegreeCentrality() {
+	public Map<V, DegreeCentrality> getVerticesDegreeCentrality() {
 		return Collections.unmodifiableMap(verticesDegreeCentrality);
 	}
 
 	@Override
-	public Map<Vertex, Double> getVerticesBetweenessCentrality() {
+	public Map<V, Double> getVerticesBetweenessCentrality() {
 		return Collections.unmodifiableMap(verticesBetweenessCentrality);
 	}
 
 	@Override
-	public Map<Vertex, Double> getVerticesClosenessCentrality() {
+	public Map<V, Double> getVerticesClosenessCentrality() {
 		return Collections.unmodifiableMap(verticesClosenessCentrality);
 	}
 
@@ -50,17 +48,17 @@ public class CentralityResults implements CentralityAnalysis {
 	}
 
 	public void setVerticesDegreeCentrality(
-			Map<Vertex, DegreeCentrality> verticesDegreeCentrality) {
+			Map<V, DegreeCentrality> verticesDegreeCentrality) {
 		this.verticesDegreeCentrality = verticesDegreeCentrality;
 	}
 
 	public void setVerticesBetweenessCentrality(
-			Map<Vertex, Double> verticesBetweenessCentrality) {
+			Map<V, Double> verticesBetweenessCentrality) {
 		this.verticesBetweenessCentrality = verticesBetweenessCentrality;
 	}
 
 	public void setVerticesClosenessCentrality(
-			Map<Vertex, Double> verticesClosenessCentrality) {
+			Map<V, Double> verticesClosenessCentrality) {
 		this.verticesClosenessCentrality = verticesClosenessCentrality;
 	}
 }

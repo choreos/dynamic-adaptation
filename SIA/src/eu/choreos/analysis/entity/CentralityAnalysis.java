@@ -3,8 +3,6 @@ package eu.choreos.analysis.entity;
 import java.util.Map;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
-import eu.choreos.analysis.graph.Edge;
-import eu.choreos.analysis.graph.Vertex;
 
 /**
  * You can understand these centralities here: http://en.wikipedia.org/wiki/Centrality 
@@ -12,13 +10,13 @@ import eu.choreos.analysis.graph.Vertex;
  * @author leofl
  *
  */
-public interface CentralityAnalysis {
+public interface CentralityAnalysis<V, E> {
 	
 	/**
 	 * Returns the graph used to calculate the metrics
 	 * @return the analyzed graph
 	 */
-	public DirectedGraph<Vertex, Edge> getAnalyzedGraph();
+	public DirectedGraph<V, E> getAnalyzedGraph();
 	
 	/**
 	 * Returns the degree centrality of the whole graph
@@ -30,18 +28,18 @@ public interface CentralityAnalysis {
 	 * Returns the degree centrality of each vertex of the graph
 	 * @return a map with the relation between each vertex and its degree centrality
 	 */
-	public Map<Vertex, DegreeCentrality> getVerticesDegreeCentrality();
+	public Map<V, DegreeCentrality> getVerticesDegreeCentrality();
 
 	/**
 	 * Returns the betweeness centrality of each vertex of the graph
 	 * @return a map with the relation between each vertex and its betweeness centrality
 	 */
-	public Map<Vertex, Double> getVerticesBetweenessCentrality();
+	public Map<V, Double> getVerticesBetweenessCentrality();
 
 	/**
 	 * Returns the closeness centrality of each vertex of the graph
 	 * @return a map with the relation between each vertex and its closeness centrality
 	 */
-	public Map<Vertex, Double> getVerticesClosenessCentrality();
+	public Map<V, Double> getVerticesClosenessCentrality();
 
 }

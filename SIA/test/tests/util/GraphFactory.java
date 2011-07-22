@@ -10,19 +10,17 @@ import eu.choreos.analysis.entity.CentralityResults;
 import eu.choreos.analysis.entity.DegreeCentrality;
 import eu.choreos.analysis.entity.StabilityAnalysis;
 import eu.choreos.analysis.entity.StabilityResults;
-import eu.choreos.analysis.graph.Edge;
-import eu.choreos.analysis.graph.Vertex;
 
 public class GraphFactory {
 
 	public enum TestGraph {SIMPLE, COMPLEX, LOOP};
 	
-	private Map<TestGraph, DirectedGraph<Vertex,Edge>> graphs = new HashMap<TestGraph, DirectedGraph<Vertex,Edge>>();
-	private Map<TestGraph, CentralityAnalysis> centralities = new HashMap<TestGraph, CentralityAnalysis>();
+	private Map<TestGraph, DirectedGraph<String,String>> graphs = new HashMap<TestGraph, DirectedGraph<String,String>>();
+	private Map<TestGraph, CentralityAnalysis<String,String>> centralities = new HashMap<TestGraph, CentralityAnalysis<String,String>>();
 	private Map<TestGraph, StabilityAnalysis> stabilities = new HashMap<TestGraph, StabilityAnalysis>();
 	
 	
-	public DirectedGraph<Vertex,Edge> getSimpleGraph(TestGraph graph){
+	public DirectedGraph<String,String> getSimpleGraph(TestGraph graph){
 			
 		if (graphs.get(graph) == null) 
 			createGraph(graph);
@@ -30,7 +28,7 @@ public class GraphFactory {
 	}
 	
 
-	public CentralityAnalysis getSimpleCentralityAnalysis(TestGraph graph) {
+	public CentralityAnalysis<String,String> getSimpleCentralityAnalysis(TestGraph graph) {
 	
 		if (centralities.get(graph) == null) 
 			createGraph(graph);
@@ -62,12 +60,12 @@ public class GraphFactory {
 
 		// create graph
 		
-		DirectedSparseGraph<Vertex,Edge> graph = new DirectedSparseGraph<Vertex,Edge>();
+		DirectedSparseGraph<String,String> graph = new DirectedSparseGraph<String,String>();
 		
 		//Creates the vertexes
-		Vertex a = new Vertex(1, "A");
-		Vertex b = new Vertex(2, "B");
-		Vertex c = new Vertex(3, "C");
+		String a = "a";
+		String b = "b";
+		String c = "c";
 		
 		//Adds the vertexes
 		graph.addVertex(a);
@@ -75,28 +73,28 @@ public class GraphFactory {
 		graph.addVertex(c);
 		
 		//Adds the edges
-		graph.addEdge(new Edge(1), a, b);
-		graph.addEdge(new Edge(2), b, a);
-		graph.addEdge(new Edge(3), a, c);
+		graph.addEdge("1", a, b);
+		graph.addEdge("2", b, a);
+		graph.addEdge("3", a, c);
 		
 		// create centrality analysis
 		
-		Map<Vertex, DegreeCentrality> vDegCent = new HashMap<Vertex, DegreeCentrality>();
+		Map<String, DegreeCentrality> vDegCent = new HashMap<String, DegreeCentrality>();
 		vDegCent.put(a, new DegreeCentrality(0.5, 1));
 		vDegCent.put(b, new DegreeCentrality(0.5, 0.5));
 		vDegCent.put(c, new DegreeCentrality(0.5, 0));
 
-		Map<Vertex, Double> vClosCent = new HashMap<Vertex, Double>();
+		Map<String, Double> vClosCent = new HashMap<String, Double>();
 		vClosCent.put(a, 0.5);
 		vClosCent.put(b, 1/3d);
 		vClosCent.put(c, 0d);
 
-		Map<Vertex, Double> vBetwCent = new HashMap<Vertex, Double>();
+		Map<String, Double> vBetwCent = new HashMap<String, Double>();
 		vBetwCent.put(a, 1d);
 		vBetwCent.put(b, 0d);
 		vBetwCent.put(c, 0d);
 
-		CentralityResults centralityAnalysis = new CentralityResults(graph);
+		CentralityResults<String,String> centralityAnalysis = new CentralityResults<String,String>(graph);
 		centralityAnalysis.setVerticesDegreeCentrality(vDegCent);
 		centralityAnalysis.setGraphDegreeCentrality(new DegreeCentrality(0, 0.75));
 		centralityAnalysis.setVerticesClosenessCentrality(vClosCent);
@@ -113,17 +111,17 @@ public class GraphFactory {
 
 		// create graph
 		
-		DirectedSparseGraph<Vertex,Edge> graph = new DirectedSparseGraph<Vertex,Edge>();
+		DirectedSparseGraph<String,String> graph = new DirectedSparseGraph<String,String>();
 		
 		//Creates the vertexes
-		Vertex a = new Vertex(1, "A");
-		Vertex b = new Vertex(2, "B");
-		Vertex c = new Vertex(3, "C");
-		Vertex d = new Vertex(3, "D");
-		Vertex e = new Vertex(3, "E");
-		Vertex f = new Vertex(3, "F");
-		Vertex g = new Vertex(3, "G");
-		Vertex h = new Vertex(3, "H");
+		String a = "a";
+		String b = "b";
+		String c = "c";
+		String d = "d";
+		String e = "e";
+		String f = "f";
+		String g = "g";
+		String h = "h";
 		
 		//Adds the vertexes
 		graph.addVertex(a);
@@ -137,17 +135,17 @@ public class GraphFactory {
 		graph.addVertex(h);
 		
 		//Adds the edges
-		graph.addEdge(new Edge(1), a, b);
-		graph.addEdge(new Edge(2), a, c);
-		graph.addEdge(new Edge(3), a, e);
-		graph.addEdge(new Edge(4), c, f);
-		graph.addEdge(new Edge(5), d, a);
-		graph.addEdge(new Edge(6), e, g);
-		graph.addEdge(new Edge(7), h, e);
+		graph.addEdge("1", a, b);
+		graph.addEdge("2", a, c);
+		graph.addEdge("3", a, e);
+		graph.addEdge("4", c, f);
+		graph.addEdge("5", d, a);
+		graph.addEdge("6", e, g);
+		graph.addEdge("7", h, e);
 		
 		// create centrality analysis
 		
-		Map<Vertex, DegreeCentrality> vDegCent = new HashMap<Vertex, DegreeCentrality>();
+		Map<String, DegreeCentrality> vDegCent = new HashMap<String, DegreeCentrality>();
 		vDegCent.put(a, new DegreeCentrality(1/7d, 3/7d));
 		vDegCent.put(b, new DegreeCentrality(1/7d, 0));
 		vDegCent.put(c, new DegreeCentrality(1/7d, 1/7d));
@@ -157,10 +155,10 @@ public class GraphFactory {
 		vDegCent.put(g, new DegreeCentrality(1/7d, 0));
 		vDegCent.put(h, new DegreeCentrality(0, 1/7d));
 
-		Map<Vertex, Double> vClosCent = new HashMap<Vertex, Double>();
+		Map<String, Double> vClosCent = new HashMap<String, Double>();
 //		vClosCent.put(a, 0.5);
 
-		Map<Vertex, Double> vBetwCent = new HashMap<Vertex, Double>();
+		Map<String, Double> vBetwCent = new HashMap<String, Double>();
 		vBetwCent.put(a, 5d);
 		vBetwCent.put(b, 0d);
 		vBetwCent.put(c, 2d);
@@ -170,7 +168,7 @@ public class GraphFactory {
 		vBetwCent.put(g, 0d);
 		vBetwCent.put(h, 0d);
 
-		CentralityResults centralityAnalysis = new CentralityResults(graph);
+		CentralityResults<String,String> centralityAnalysis = new CentralityResults<String,String>(graph);
 		centralityAnalysis.setVerticesDegreeCentrality(vDegCent);
 		centralityAnalysis.setGraphDegreeCentrality(new DegreeCentrality(0.0306, 0.0578)); 
 		centralityAnalysis.setVerticesClosenessCentrality(vClosCent); // TODO

@@ -3,18 +3,16 @@ package eu.choreos.analysis;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.StabilityResults;
-import eu.choreos.analysis.graph.Edge;
-import eu.choreos.analysis.graph.Vertex;
 
-public interface DependencyAnalyzer {
+public interface DependencyAnalyzer<V, E> {
 
 	/**
 	 * Sets the graph that will be used on further computations
 	 * @param graph
 	 */
-	public void setGraph(DirectedGraph<Vertex, Edge> graph);
+	public void setGraph(DirectedGraph<V, E> graph);
 	
-	public DirectedGraph<Vertex, Edge> getGraph();
+	public DirectedGraph<V, E> getGraph();
 	
 	/**
 	 * Calculates stability metrics of the given graph
@@ -26,5 +24,5 @@ public interface DependencyAnalyzer {
 	 * Calculates centrality metrics of the given graph
 	 * @return
 	 */
-	public CentralityAnalysis calculateCentralityAnalysis();
+	public CentralityAnalysis<V, E> calculateCentralityAnalysis();
 }
