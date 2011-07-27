@@ -11,7 +11,8 @@ public class CentralityResults<V, E> implements CentralityAnalysis<V, E> {
 	private DegreeCentrality graphDegreeCentrality;
 	private Map<V, DegreeCentrality> verticesDegreeCentrality;
 	private Map<V, Double> verticesBetweenessCentrality;
-	private Map<V, Double> verticesClosenessCentrality;
+	private Map<V, Double> verticesClosenessCentrality;	
+	private Map<V, Double> verticesPageRank;
 	
 	public CentralityResults(DirectedGraph<V, E> graph) {
 		this.graph = graph;
@@ -42,7 +43,11 @@ public class CentralityResults<V, E> implements CentralityAnalysis<V, E> {
 		return Collections.unmodifiableMap(verticesClosenessCentrality);
 	}
 
-	
+	@Override
+	public Map<V, Double> getVerticesPageRank() {
+		return Collections.unmodifiableMap(verticesPageRank);
+	}
+
 	public void setGraphDegreeCentrality(DegreeCentrality graphDegreeCentrality) {
 		this.graphDegreeCentrality = graphDegreeCentrality;
 	}
@@ -61,4 +66,9 @@ public class CentralityResults<V, E> implements CentralityAnalysis<V, E> {
 			Map<V, Double> verticesClosenessCentrality) {
 		this.verticesClosenessCentrality = verticesClosenessCentrality;
 	}
+	
+	public void setVerticesPageRank(
+			Map<V, Double> verticesPageRank) {
+		this.verticesPageRank = verticesPageRank;
+	}	
 }

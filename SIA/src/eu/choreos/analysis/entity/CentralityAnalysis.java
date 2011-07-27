@@ -41,5 +41,12 @@ public interface CentralityAnalysis<V, E> {
 	 * @return a map with the relation between each vertex and its closeness centrality
 	 */
 	public Map<V, Double> getVerticesClosenessCentrality();
+	
+	/**
+	 * Returns the page rank of each vertex of the graph.
+	 * The page rank is a variant of the Eigenvector centrality for directed graphs
+	 * @return a map with the relation between each vertex and its page rank
+	 */	
+	public Map<V, Double> getVerticesPageRank();
 
 }
