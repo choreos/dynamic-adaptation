@@ -50,6 +50,12 @@ public class CentralityComplexTest {
 	}
 
 	@Test
+	public void shouldCalculateVerticesClosenessCentrality() {
+		
+		CentralityBaseTests.shouldCalculateVerticesClosenessCentrality(expectedCentrality, actualCentrality);
+	}
+	
+	@Test
 	public void shouldCalculateVerticesPageRank() {
 		
 		CentralityBaseTests.shouldCalculateVerticesPageRank(expectedCentrality, actualCentrality);

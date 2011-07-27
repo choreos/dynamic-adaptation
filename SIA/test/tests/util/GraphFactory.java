@@ -52,7 +52,8 @@ public class GraphFactory {
 				createComplexGraph();
 				break;
 			case LOOP:
-				throw new UnsupportedOperationException();
+				createLoopGraph();
+				break;
 		}
 	}
 	
@@ -162,7 +163,9 @@ public class GraphFactory {
 		vDegCent.put(h, new DegreeCentrality(0, 1/7d));
 
 		Map<String, Double> vClosCent = new HashMap<String, Double>();
-//		vClosCent.put(a, 0.5);
+		vClosCent.put(a, 0.5); // TODO
+		vClosCent.put(b, 1/3d);
+		vClosCent.put(c, 0d);
 
 		Map<String, Double> vBetwCent = new HashMap<String, Double>();
 		vBetwCent.put(a, 5d);
@@ -187,7 +190,7 @@ public class GraphFactory {
 		CentralityResults<String,String> centralityAnalysis = new CentralityResults<String,String>(graph);
 		centralityAnalysis.setVerticesDegreeCentrality(vDegCent);
 		centralityAnalysis.setGraphDegreeCentrality(new DegreeCentrality(0.0306, 0.0578)); 
-		centralityAnalysis.setVerticesClosenessCentrality(vClosCent); // TODO
+		centralityAnalysis.setVerticesClosenessCentrality(vClosCent); 
 		centralityAnalysis.setVerticesBetweenessCentrality(vBetwCent); 
 		centralityAnalysis.setVerticesPageRank(pageRank);
 		
@@ -196,6 +199,68 @@ public class GraphFactory {
 		graphs.put(TestGraph.COMPLEX, graph);
 		centralities.put(TestGraph.COMPLEX, centralityAnalysis);
 		stabilities.put(TestGraph.COMPLEX, stabilityAnalysis);
+	}
+
+	private void createLoopGraph() {
+
+		// create graph
+		
+		DirectedSparseGraph<String,String> graph = new DirectedSparseGraph<String,String>();
+		
+		//Creates the vertexes
+		String a = "a";
+		String b = "b";
+		String c = "c";
+		String d = "d";
+		
+		//Adds the vertexes
+		graph.addVertex(a);
+		graph.addVertex(b);
+		graph.addVertex(c);
+		graph.addVertex(d);
+		
+		//Adds the edges
+		graph.addEdge("1", a, b);
+		graph.addEdge("2", a, c);
+		graph.addEdge("3", c, b);
+		graph.addEdge("4", d, a);
+		graph.addEdge("5", d, b);
+		
+		// create centrality analysis
+		
+		Map<String, DegreeCentrality> vDegCent = new HashMap<String, DegreeCentrality>();
+		vDegCent.put(a, new DegreeCentrality(1/3d, 2/3d));
+		vDegCent.put(b, new DegreeCentrality(1d, 0d));
+		vDegCent.put(c, new DegreeCentrality(1/3d, 1/3d));
+		vDegCent.put(d, new DegreeCentrality(0d, 2/3d));
+
+		Map<String, Double> vClosCent = new HashMap<String, Double>();
+		vClosCent.put(a, 1/6d);
+		vClosCent.put(b, 0d);
+		vClosCent.put(c, 0d);
+		vClosCent.put(d, 0d);
+
+		Map<String, Double> vBetwCent = new HashMap<String, Double>();
+		//vBetwCent.put(a, 1d); // TODO
+
+		Map<String, Double> pageRank = new HashMap<String, Double>();
+		pageRank.put(a, 0d); 
+		pageRank.put(b, 0d); 
+		pageRank.put(c, 0d); 
+		pageRank.put(d, 0d); 
+
+		CentralityResults<String,String> centralityAnalysis = new CentralityResults<String,String>(graph);
+		centralityAnalysis.setVerticesDegreeCentrality(vDegCent);
+		centralityAnalysis.setGraphDegreeCentrality(new DegreeCentrality(7/18d, 1/6d));
+		centralityAnalysis.setVerticesClosenessCentrality(vClosCent);
+		centralityAnalysis.setVerticesBetweenessCentrality(vBetwCent);
+		centralityAnalysis.setVerticesPageRank(pageRank);
+		
+		StabilityAnalysis stabilityAnalysis = new StabilityResults(5/8d);
+		
+		graphs.put(TestGraph.LOOP, graph);
+		centralities.put(TestGraph.LOOP, centralityAnalysis);
+		stabilities.put(TestGraph.LOOP, stabilityAnalysis);
 	}
 
 }
