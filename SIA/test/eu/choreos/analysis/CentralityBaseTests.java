@@ -59,5 +59,17 @@ public class CentralityBaseTests {
 		for (String v: expected.keySet()) {
 			assertEquals(expected.get(v), calculated.get(v));
 		}		
+	}
+	
+	public static void shouldCalculateVerticesPageRank(
+			CentralityAnalysis<String,String> expectedCentrality, 
+			CentralityAnalysis<String,String> actualCentrality) {
+		
+		Map<String, Double> expected = expectedCentrality.getVerticesPageRank();
+		Map<String, Double> calculated = actualCentrality.getVerticesPageRank();
+		
+		for (String v: expected.keySet()) {
+			assertEquals(expected.get(v), calculated.get(v));
+		}		
 	}	
 }

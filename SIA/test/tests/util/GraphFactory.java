@@ -94,11 +94,17 @@ public class GraphFactory {
 		vBetwCent.put(b, 0d);
 		vBetwCent.put(c, 0d);
 
+		Map<String, Double> pageRank = new HashMap<String, Double>();
+		pageRank.put(a, 0d);
+		pageRank.put(b, 0d);
+		pageRank.put(c, 0d);
+
 		CentralityResults<String,String> centralityAnalysis = new CentralityResults<String,String>(graph);
 		centralityAnalysis.setVerticesDegreeCentrality(vDegCent);
 		centralityAnalysis.setGraphDegreeCentrality(new DegreeCentrality(0, 0.75));
 		centralityAnalysis.setVerticesClosenessCentrality(vClosCent);
 		centralityAnalysis.setVerticesBetweenessCentrality(vBetwCent);
+		centralityAnalysis.setVerticesPageRank(pageRank);
 		
 		StabilityAnalysis stabilityAnalysis = new StabilityResults(0.5555);
 		
@@ -168,11 +174,22 @@ public class GraphFactory {
 		vBetwCent.put(g, 0d);
 		vBetwCent.put(h, 0d);
 
+		Map<String, Double> pageRank = new HashMap<String, Double>();
+		pageRank.put(a, 0d);
+		pageRank.put(b, 0d);
+		pageRank.put(c, 0d);
+		pageRank.put(d, 0d);
+		pageRank.put(e, 0d);
+		pageRank.put(f, 0d);
+		pageRank.put(g, 0d);
+		pageRank.put(h, 0d);
+		
 		CentralityResults<String,String> centralityAnalysis = new CentralityResults<String,String>(graph);
 		centralityAnalysis.setVerticesDegreeCentrality(vDegCent);
 		centralityAnalysis.setGraphDegreeCentrality(new DegreeCentrality(0.0306, 0.0578)); 
 		centralityAnalysis.setVerticesClosenessCentrality(vClosCent); // TODO
 		centralityAnalysis.setVerticesBetweenessCentrality(vBetwCent); 
+		centralityAnalysis.setVerticesPageRank(pageRank);
 		
 		StabilityAnalysis stabilityAnalysis = new StabilityResults(0.7656); 
 		

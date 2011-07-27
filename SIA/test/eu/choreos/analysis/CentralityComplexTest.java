@@ -48,5 +48,11 @@ public class CentralityComplexTest {
 		
 		CentralityBaseTests.shouldCalculateVerticesBetweenessCentrality(expectedCentrality, actualCentrality);
 	}
-	
+
+	@Test
+	public void shouldCalculateVerticesPageRank() {
+		
+		CentralityBaseTests.shouldCalculateVerticesPageRank(expectedCentrality, actualCentrality);
+	}
+
 }
