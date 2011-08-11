@@ -1,8 +1,10 @@
 package eu.choreos.analysis;
 
+import java.util.List;
+
 import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.StabilityResults;
-import eu.choreos.middleware.entity.BehaviorProtocolAutomaton;
+import eu.choreos.middleware.entity.CoordinationDelegate;
 import eu.choreos.middleware.entity.ChoreographyModel;
 
 public interface SIA {
@@ -11,12 +13,12 @@ public interface SIA {
 			choreographyModel);
 	
 	public StabilityResults calculateOverallStability(
-			BehaviorProtocolAutomaton behaviorProtocolAutomaton);
+			List<CoordinationDelegate> coordinatinoDelegates);
 	
 	public CentralityAnalysis calculateCentrality(ChoreographyModel 
 			choreographyModel);
 	
 	public CentralityAnalysis calculateCentrality(
-			BehaviorProtocolAutomaton behaviorProtocolAutomaton);
+			List<CoordinationDelegate> coordinatinoDelegates);
 	
 }

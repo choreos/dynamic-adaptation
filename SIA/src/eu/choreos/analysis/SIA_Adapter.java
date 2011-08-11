@@ -1,10 +1,12 @@
 package eu.choreos.analysis;
 
+import java.util.List;
+
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.StabilityResults;
-import eu.choreos.middleware.entity.BehaviorProtocolAutomaton;
 import eu.choreos.middleware.entity.ChoreographyModel;
+import eu.choreos.middleware.entity.CoordinationDelegate;
 
 public class SIA_Adapter<V, E> implements SIA{
 
@@ -30,7 +32,7 @@ public class SIA_Adapter<V, E> implements SIA{
 
 	@Override
 	public StabilityResults calculateOverallStability(
-			BehaviorProtocolAutomaton behaviorProtocolAutomaton) {
+			List<CoordinationDelegate> coordinatinoDelegates) {
 		
 		DirectedGraph<V,E> graph = null;
 		StabilityResults results = 
@@ -52,7 +54,7 @@ public class SIA_Adapter<V, E> implements SIA{
 
 	@Override
 	public CentralityAnalysis<V, E> calculateCentrality(
-			BehaviorProtocolAutomaton behaviorProtocolAutomaton) {
+			List<CoordinationDelegate> coordinatinoDelegates) {
 		
 		DirectedGraph<V,E> graph = null;
 		CentralityAnalysis results =	
