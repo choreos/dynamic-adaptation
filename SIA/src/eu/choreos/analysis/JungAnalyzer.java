@@ -7,6 +7,7 @@ import eu.choreos.analysis.calc.DegreeCentralityCalculator;
 import eu.choreos.analysis.calc.StabilityCalculator;
 import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.CentralityResults;
+import eu.choreos.analysis.entity.StabilityAnalysis;
 import eu.choreos.analysis.entity.StabilityResults;
 
 public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
@@ -33,7 +34,7 @@ public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 	}
 
 	
-	public StabilityResults calculateStabilityAnalysis(){
+	public StabilityAnalysis calculateStabilityAnalysis(){
 		
 		StabilityCalculator<V, E> calculator = new StabilityCalculator<V, E>(this.graph);
 		double overallStability = calculator.calculateOverallStability();

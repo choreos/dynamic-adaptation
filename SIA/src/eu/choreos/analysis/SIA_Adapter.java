@@ -4,7 +4,7 @@ import java.util.List;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
-import eu.choreos.analysis.entity.StabilityResults;
+import eu.choreos.analysis.entity.StabilityAnalysis;
 import eu.choreos.middleware.entity.ChoreographyModel;
 import eu.choreos.middleware.entity.CoordinationDelegate;
 
@@ -17,25 +17,25 @@ public class SIA_Adapter<V, E> implements SIA{
 	}
 	
 	@Override
-	public StabilityResults calculateOverallStability(
+	public StabilityAnalysis calculateOverallStability(
 			ChoreographyModel choreographyModel) {
 		
 		//TODO: Convert from a choreographyModel (BPMN2 in memory 
 		//representation) to a directed graph		
 		
 		DirectedGraph<V,E> graph = null;
-		StabilityResults results = 
+		StabilityAnalysis results = 
 			depAnalyzer.calculateStabilityAnalysis();
 		
 		return results;
 	}
 
 	@Override
-	public StabilityResults calculateOverallStability(
+	public StabilityAnalysis calculateOverallStability(
 			List<CoordinationDelegate> coordinatinoDelegates) {
 		
 		DirectedGraph<V,E> graph = null;
-		StabilityResults results = 
+		StabilityAnalysis results = 
 			depAnalyzer.calculateStabilityAnalysis();
 		
 		return results;
