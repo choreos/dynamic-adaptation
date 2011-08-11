@@ -38,6 +38,7 @@ public interface CentralityAnalysis<V, E> {
 
 	/**
 	 * Returns the closeness centrality of each vertex of the graph
+	 * If a vertex reaches no one else, its closeness centrality is <code>Double.NaN</code>
 	 * @return a map with the relation between each vertex and its closeness centrality
 	 */
 	public Map<V, Double> getVerticesClosenessCentrality();

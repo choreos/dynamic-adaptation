@@ -86,9 +86,9 @@ public class GraphFactory {
 		vDegCent.put(c, new DegreeCentrality(0.5, 0));
 
 		Map<String, Double> vClosCent = new HashMap<String, Double>();
-		vClosCent.put(a, 0.5);
-		vClosCent.put(b, 1/3d);
-		vClosCent.put(c, 0d);
+		vClosCent.put(a, 1d);
+		vClosCent.put(b, 2/3d);
+		vClosCent.put(c, Double.NaN);
 
 		Map<String, Double> vBetwCent = new HashMap<String, Double>();
 		vBetwCent.put(a, 1d);
@@ -163,9 +163,14 @@ public class GraphFactory {
 		vDegCent.put(h, new DegreeCentrality(0, 1/7d));
 
 		Map<String, Double> vClosCent = new HashMap<String, Double>();
-		vClosCent.put(a, 0.5); // TODO
-		vClosCent.put(b, 1/3d);
-		vClosCent.put(c, 0d);
+		vClosCent.put(a, 25/49d); 
+		vClosCent.put(b, Double.NaN);
+		vClosCent.put(c, 1/7d);
+		vClosCent.put(d, 36/91d);
+		vClosCent.put(e, 1/7d);
+		vClosCent.put(f, Double.NaN);
+		vClosCent.put(g, Double.NaN);
+		vClosCent.put(h, 4/21d);
 
 		Map<String, Double> vBetwCent = new HashMap<String, Double>();
 		vBetwCent.put(a, 5d);
@@ -235,10 +240,10 @@ public class GraphFactory {
 		vDegCent.put(d, new DegreeCentrality(0d, 2/3d));
 
 		Map<String, Double> vClosCent = new HashMap<String, Double>();
-		vClosCent.put(a, 1/6d);
-		vClosCent.put(b, 0d);
-		vClosCent.put(c, 0d);
-		vClosCent.put(d, 0d);
+		vClosCent.put(a, 2/3d);
+		vClosCent.put(b, Double.NaN);
+		vClosCent.put(c, 1/3d);
+		vClosCent.put(d, 3/4d);
 
 		Map<String, Double> vBetwCent = new HashMap<String, Double>();
 		//vBetwCent.put(a, 1d); // TODO

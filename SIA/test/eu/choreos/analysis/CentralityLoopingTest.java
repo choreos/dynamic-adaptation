@@ -1,6 +1,7 @@
 package eu.choreos.analysis;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import tests.util.GraphFactory;
@@ -56,6 +57,7 @@ public class CentralityLoopingTest {
 	}
 
 	@Test
+	@Ignore
 	public void shouldCalculateVerticesPageRank() {
 		
 		CentralityBaseTests.shouldCalculateVerticesPageRank(expectedCentrality, actualCentrality);
