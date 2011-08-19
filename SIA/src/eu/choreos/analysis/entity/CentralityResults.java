@@ -34,7 +34,7 @@ public class CentralityResults<V, E> implements CentralityAnalysis<V, E> {
 	}
 
 	@Override
-	public Map<V, Double> getVerticesBetweenessCentrality() {
+	public Map<V, Double> getVerticesBetweennessCentrality() {
 		return Collections.unmodifiableMap(verticesBetweenessCentrality);
 	}
 

@@ -1,55 +1,34 @@
 package eu.choreos.analysis.calc;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import edu.uci.ics.jung.algorithms.shortestpath.DijkstraDistance;
-import edu.uci.ics.jung.algorithms.shortestpath.Distance;
 import edu.uci.ics.jung.graph.DirectedGraph;
+import edu.uci.ics.jung.graph.DirectedSparseGraph;
+import eu.choreos.analysis.util.GraphUtils;
 
 public class StabilityCalculator<V,E> {
-
-	DirectedGraph<V, E> graph;
 	
-	public StabilityCalculator(DirectedGraph<V, E> graph) {
+	public double calculateOverallStability(DirectedGraph<V, E> graph) {
 		
-		this.graph = graph;
-	}
-	
-	public double calculateOverallStability() {
-		
-		if (this.graph == null)
+		if (graph == null)
 			throw new IllegalStateException("The graph should not be null");
 
-		// this is the overall stability algorithm of the Gustavo's slides
-		
-		int impactAll = 0;
-		Map<V, Integer> impact = new HashMap<V, Integer>();
-		
-		for (V v: this.graph.getVertices()) {
+		// This is the algorithm described in 
+		// www.ime.usp.br/~yoshi/2007i/mac328/Slides/2007.04.20/lecture.pdf
 			
-			int inpac = this.calculateImpact(v);
-			impact.put(v, inpac);
-			impactAll += inpac;
+		DirectedSparseGraph<V, String> transitiveClosure = 
+				new GraphUtils<V, E>().computeTransitiveClosure(graph); 
+		
+		int sumImpact = 0;
+		for (V v : transitiveClosure.getVertices()){
+			int impacted = transitiveClosure.getPredecessorCount(v);
+			sumImpact += impacted;
 		}
-
-		int numServices = this.graph.getVertexCount();
-		double avgImpact = (double) impactAll / (numServices*numServices);
+		
+		int n = graph.getVertexCount();
+		double avgImpact = (double) sumImpact / (n * n);
 		double overallStability = 1 - avgImpact;
 		
 		return overallStability;
 	}
 	
-	// impact is transitive
-	private int calculateImpact(V vertex) {
-		
-		int impact = 0;
-		Distance<V> distance = new DijkstraDistance<V, E>(this.graph);
-		for (V v: this.graph.getVertices()) {
-			Number d = distance.getDistance(v, vertex);
-			if (d != null && d.doubleValue() > 0)
-				impact++;
-		}
-		return impact;
-	}	
+
 }

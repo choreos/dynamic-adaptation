@@ -6,16 +6,13 @@ import java.util.Map;
 import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
 import edu.uci.ics.jung.graph.DirectedGraph;
 
-public class BetweenessCentralityCalculator<V, E> {
-
-	DirectedGraph<V, E> graph;
+public class BetweennessCentralityCalculator<V, E> {
 	
-	public BetweenessCentralityCalculator(DirectedGraph<V, E> graph) {
-		
-		this.graph = graph;
-	}
-	
-	public Map<V, Double> calculateVerticesBetweennessCentrality(){
+	/**
+	 * TODO: write closeness centrality equation
+	 * @return
+	 */
+	public Map<V, Double> calculateVerticesBetweennessCentrality(DirectedGraph<V, E> graph){
 
 		Map<V, Double> centralities = new HashMap<V, Double>();
 		BetweennessCentrality<V, E> ranker = new BetweennessCentrality<V, E>(graph);

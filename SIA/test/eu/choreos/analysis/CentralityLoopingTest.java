@@ -26,8 +26,8 @@ public class CentralityLoopingTest {
 	public void setUp() {
 		
 		GraphFactory factory = new GraphFactory();
-		graph = factory.getSimpleGraph(TestGraph.LOOP);
-		expectedCentrality = factory.getSimpleCentralityAnalysis(TestGraph.LOOP);		
+		graph = factory.getGraph(TestGraph.LOOP);
+		expectedCentrality = factory.getCentralityAnalysis(TestGraph.LOOP);		
 		analyzer = new JungAnalyzer<String,String>(graph);
 		actualCentrality = analyzer.calculateCentralityAnalysis();		
 	}
@@ -35,32 +35,37 @@ public class CentralityLoopingTest {
 	@Test
 	public void shouldCalculateVerticeDegreeCentrality() {
 
-		CentralityBaseTests.shouldCalculateVerticeDegreeCentrality(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateVerticeDegreeCentrality(
+				expectedCentrality, actualCentrality);
 	}
 	
 	@Test
 	public void shouldCalculateGraphDegreeCentrality() {
 		
-		CentralityBaseTests.shouldCalculateGraphDegreeCentrality(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateGraphDegreeCentrality(
+				expectedCentrality, actualCentrality);
 	}
 	
 	@Test
 	public void shouldCalculateVerticesClosenessCentrality() {
 		
-		CentralityBaseTests.shouldCalculateVerticesClosenessCentrality(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateVerticesClosenessCentrality(
+				expectedCentrality, actualCentrality);
 	}
 
 	@Test
-	public void shouldCalculateVerticesBetweenessCentrality() {
+	public void shouldCalculateVerticesBetweennessCentrality() {
 		
-		CentralityBaseTests.shouldCalculateVerticesBetweenessCentrality(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateVerticesBetweennessCentrality(
+				expectedCentrality, actualCentrality);
 	}
 
 	@Test
 	@Ignore
 	public void shouldCalculateVerticesPageRank() {
 		
-		CentralityBaseTests.shouldCalculateVerticesPageRank(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateVerticesPageRank(
+				expectedCentrality, actualCentrality);
 	}
 
 

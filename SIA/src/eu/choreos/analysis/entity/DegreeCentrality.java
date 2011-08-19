@@ -13,21 +13,21 @@ public class DegreeCentrality {
 	// required precision to equivalence
 	private final double EPSILON = 0.0001;
 	
-	private final double inCentrality;
-	private final double outCentrality;
-	// there could be a "total centrality"?
-
-	public DegreeCentrality(double inCentrality, double outCentrality) {
-		this.inCentrality = inCentrality;
-		this.outCentrality = outCentrality;
+	private final double inDegree;
+	private final double outDegree;
+	// could there be a "total centrality"?
+	
+	public DegreeCentrality(double inDegree, double outDegree) {
+		this.inDegree = inDegree;
+		this.outDegree = outDegree;
 	}
 
-	public double getInCentrality() {
-		return inCentrality;
+	public Double getInDegree() {
+		return inDegree;
 	}
 
-	public double getOutCentrality() {
-		return outCentrality;
+	public Double getOutDegree() {
+		return outDegree;
 	}
 
 	@Override
@@ -35,9 +35,9 @@ public class DegreeCentrality {
 		final int prime = 31;
 		int result = 1;
 		long temp;
-		temp = Double.doubleToLongBits(inCentrality);
+		temp = Double.doubleToLongBits(inDegree);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(outCentrality);
+		temp = Double.doubleToLongBits(outDegree);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
@@ -51,17 +51,17 @@ public class DegreeCentrality {
 		if (getClass() != obj.getClass())
 			return false;
 		DegreeCentrality other = (DegreeCentrality) obj;
-		if (Math.abs(inCentrality - other.inCentrality) > EPSILON)
+		if (Math.abs(inDegree - other.inDegree) > EPSILON)
 			return false;
-		if (Math.abs(outCentrality - other.outCentrality) > EPSILON)
+		if (Math.abs(outDegree - other.outDegree) > EPSILON)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "DegreeCentrality [inCentrality=" + inCentrality
-				+ ", outCentrality=" + outCentrality + "]";
+		return "DegreeCentrality [inDegreeCentrality=" + inDegree
+				+ ", outDegreeCentrality=" + outDegree + "]";
 	}
 	
 }

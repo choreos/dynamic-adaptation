@@ -1,9 +1,10 @@
 package eu.choreos.analysis;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
-import eu.choreos.analysis.calc.BetweenessCentralityCalculator;
+import eu.choreos.analysis.calc.BetweennessCentralityCalculator;
 import eu.choreos.analysis.calc.ClosenessCentralityCalculator;
 import eu.choreos.analysis.calc.DegreeCentralityCalculator;
+import eu.choreos.analysis.calc.PageRankCalculator;
 import eu.choreos.analysis.calc.StabilityCalculator;
 import eu.choreos.analysis.entity.CentralityAnalysis;
 import eu.choreos.analysis.entity.CentralityResults;
@@ -36,8 +37,8 @@ public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 	
 	public StabilityAnalysis calculateStabilityAnalysis(){
 		
-		StabilityCalculator<V, E> calculator = new StabilityCalculator<V, E>(this.graph);
-		double overallStability = calculator.calculateOverallStability();
+		StabilityCalculator<V, E> calculator = new StabilityCalculator<V, E>();
+		double overallStability = calculator.calculateOverallStability(this.graph);
 		return new StabilityResults(overallStability);
 	}
 	
@@ -48,26 +49,20 @@ public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 		
 		CentralityResults<V, E> centralityResults = new CentralityResults<V, E>(graph);
 		
-		DegreeCentralityCalculator<V,E> degreeCalc = new DegreeCentralityCalculator<V,E>(this.graph);
-		centralityResults.setVerticesDegreeCentrality(degreeCalc.calculateVerticesDegreeCentrality());
-		centralityResults.setGraphDegreeCentrality(degreeCalc.calculateGraphDegreeCentrality());
+		DegreeCentralityCalculator<V,E> degreeCalc = new DegreeCentralityCalculator<V,E>();
+		centralityResults.setVerticesDegreeCentrality(degreeCalc.calculateVerticesDegreeCentrality(this.graph));
+		centralityResults.setGraphDegreeCentrality(degreeCalc.calculateGraphDegreeCentrality(this.graph));
 		
-		ClosenessCentralityCalculator<V,E> closenessCalc = new ClosenessCentralityCalculator<V,E>(this.graph);		
-		centralityResults.setVerticesClosenessCentrality(closenessCalc.calculateVerticesClosenessCentrality());
+		ClosenessCentralityCalculator<V,E> closenessCalc = new ClosenessCentralityCalculator<V,E>();		
+		centralityResults.setVerticesClosenessCentrality(closenessCalc.calculateVerticesClosenessCentrality(this.graph));
 		
-		BetweenessCentralityCalculator<V,E> betweenessCalc = new BetweenessCentralityCalculator<V,E>(this.graph);				
-		centralityResults.setVerticesBetweenessCentrality(betweenessCalc.calculateVerticesBetweennessCentrality());
+		BetweennessCentralityCalculator<V,E> betweenessCalc = new BetweennessCentralityCalculator<V,E>();				
+		centralityResults.setVerticesBetweenessCentrality(betweenessCalc.calculateVerticesBetweennessCentrality(this.graph));
+		
+		PageRankCalculator<V, E> pageRankCalc = new PageRankCalculator<V, E>();
+		centralityResults.setVerticesPageRank(pageRankCalc.calculateVerticesPageRankCentrality(graph));
 		
 		return centralityResults;
 	}
-	
-	
-	
-
-	
-
-
-	
-
 	
 }

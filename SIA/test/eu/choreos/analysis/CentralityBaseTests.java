@@ -20,8 +20,11 @@ public class CentralityBaseTests {
 			CentralityAnalysis<String,String> expectedCentrality, 
 			CentralityAnalysis<String,String> actualCentrality) {
 		
-		Map<String, DegreeCentrality> expected = expectedCentrality.getVerticesDegreeCentrality();
-		Map<String, DegreeCentrality> calculated = actualCentrality.getVerticesDegreeCentrality();
+		Map<String, DegreeCentrality> expected = 
+				expectedCentrality.getVerticesDegreeCentrality();
+		
+		Map<String, DegreeCentrality> calculated = 
+				actualCentrality.getVerticesDegreeCentrality();
 		
 		for (String v: expected.keySet()) {
 			assertEquals(expected.get(v), calculated.get(v));
@@ -32,8 +35,12 @@ public class CentralityBaseTests {
 			CentralityAnalysis<String,String> expectedCentrality, 
 			CentralityAnalysis<String,String> actualCentrality) {
 		
-		DegreeCentrality expected = expectedCentrality.getGraphDegreeCentrality();
-		DegreeCentrality calculated = actualCentrality.getGraphDegreeCentrality();
+		DegreeCentrality expected = 
+				expectedCentrality.getGraphDegreeCentrality();
+		
+		DegreeCentrality calculated = 
+				actualCentrality.getGraphDegreeCentrality();
+		
 		assertEquals(expected, calculated);
 	}
 	
@@ -41,20 +48,26 @@ public class CentralityBaseTests {
 			CentralityAnalysis<String,String> expectedCentrality, 
 			CentralityAnalysis<String,String> actualCentrality) {
 		
-		Map<String, Double> expected = expectedCentrality.getVerticesClosenessCentrality();
-		Map<String, Double> calculated = actualCentrality.getVerticesClosenessCentrality();
+		Map<String, Double> expected = 
+				expectedCentrality.getVerticesClosenessCentrality();
+		
+		Map<String, Double> calculated = 
+				actualCentrality.getVerticesClosenessCentrality();
 		
 		for (String v: expected.keySet()) {
-			assertEquals(expected.get(v), calculated.get(v));
-		}		
+			assertEquals("Vertex " + v, expected.get(v), calculated.get(v));
+		}
 	}
 
-	public static void shouldCalculateVerticesBetweenessCentrality(
+	public static void shouldCalculateVerticesBetweennessCentrality(
 			CentralityAnalysis<String,String> expectedCentrality, 
 			CentralityAnalysis<String,String> actualCentrality) {
 		
-		Map<String, Double> expected = expectedCentrality.getVerticesBetweenessCentrality();
-		Map<String, Double> calculated = actualCentrality.getVerticesBetweenessCentrality();
+		Map<String, Double> expected = 
+				expectedCentrality.getVerticesBetweennessCentrality();
+		
+		Map<String, Double> calculated = 
+				actualCentrality.getVerticesBetweennessCentrality();
 		
 		for (String v: expected.keySet()) {
 			assertEquals(expected.get(v), calculated.get(v));

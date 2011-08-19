@@ -20,7 +20,7 @@ public class GraphFactory {
 	private Map<TestGraph, StabilityAnalysis> stabilities = new HashMap<TestGraph, StabilityAnalysis>();
 	
 	
-	public DirectedGraph<String,String> getSimpleGraph(TestGraph graph){
+	public DirectedGraph<String,String> getGraph(TestGraph graph){
 			
 		if (graphs.get(graph) == null) 
 			createGraph(graph);
@@ -28,14 +28,14 @@ public class GraphFactory {
 	}
 	
 
-	public CentralityAnalysis<String,String> getSimpleCentralityAnalysis(TestGraph graph) {
+	public CentralityAnalysis<String,String> getCentralityAnalysis(TestGraph graph) {
 	
 		if (centralities.get(graph) == null) 
 			createGraph(graph);
 		return centralities.get(graph);
 	}
 	
-	public StabilityAnalysis getSimpleStabilityAnalysis(TestGraph graph) {
+	public StabilityAnalysis getStabilityAnalysis(TestGraph graph) {
 		
 		if (stabilities.get(graph) == null) 
 			createGraph(graph);
@@ -57,6 +57,11 @@ public class GraphFactory {
 		}
 	}
 	
+	/**
+	 * TODO: Draw ASCI version of graph
+	 * FIXME: Este método está sobrecarregado! Ele só deveria criar o grafo
+	 * (e não calcular as centralidades)
+	 */
 	private void createSimpleGraph() {
 
 		// create graph
@@ -114,6 +119,11 @@ public class GraphFactory {
 		stabilities.put(TestGraph.SIMPLE, stabilityAnalysis);
 	}
 
+	/**
+	 * TODO: Draw ASCI version of graph
+	 * FIXME: Este método está sobrecarregado! Ele só deveria criar o grafo
+	 * (e não calcular as centralidades)
+	 */
 	private void createComplexGraph() {
 
 		// create graph
@@ -163,14 +173,14 @@ public class GraphFactory {
 		vDegCent.put(h, new DegreeCentrality(0, 1/7d));
 
 		Map<String, Double> vClosCent = new HashMap<String, Double>();
-		vClosCent.put(a, 25/49d); 
+		vClosCent.put(a, 5/7d); 
 		vClosCent.put(b, Double.NaN);
-		vClosCent.put(c, 1/7d);
-		vClosCent.put(d, 36/91d);
-		vClosCent.put(e, 1/7d);
+		vClosCent.put(c, 1d);
+		vClosCent.put(d, 6/13d);
+		vClosCent.put(e, 1d);
 		vClosCent.put(f, Double.NaN);
 		vClosCent.put(g, Double.NaN);
-		vClosCent.put(h, 4/21d);
+		vClosCent.put(h, 2/3d);
 
 		Map<String, Double> vBetwCent = new HashMap<String, Double>();
 		vBetwCent.put(a, 5d);
@@ -206,6 +216,11 @@ public class GraphFactory {
 		stabilities.put(TestGraph.COMPLEX, stabilityAnalysis);
 	}
 
+	/**
+	 * TODO: Draw ASCI version of graph
+	 * FIXME: Este método está sobrecarregado! Ele só deveria criar o grafo
+	 * (e não calcular as centralidades)
+	 */
 	private void createLoopGraph() {
 
 		// create graph
@@ -240,9 +255,9 @@ public class GraphFactory {
 		vDegCent.put(d, new DegreeCentrality(0d, 2/3d));
 
 		Map<String, Double> vClosCent = new HashMap<String, Double>();
-		vClosCent.put(a, 2/3d);
+		vClosCent.put(a, 1d);
 		vClosCent.put(b, Double.NaN);
-		vClosCent.put(c, 1/3d);
+		vClosCent.put(c, 1d);
 		vClosCent.put(d, 3/4d);
 
 		Map<String, Double> vBetwCent = new HashMap<String, Double>();

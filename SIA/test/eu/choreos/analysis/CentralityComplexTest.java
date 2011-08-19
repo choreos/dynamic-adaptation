@@ -10,7 +10,8 @@ import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.entity.CentralityAnalysis;
 
 /**
- * Tests the centralities calculations with a graph more complex (but not so much)
+ * Tests the centralities calculations with a more 
+ * complex graph (but not that much)
  * 
  * @author leofl
  *
@@ -26,8 +27,8 @@ public class CentralityComplexTest {
 	public void setUp() {
 		
 		GraphFactory factory = new GraphFactory();
-		graph = factory.getSimpleGraph(TestGraph.COMPLEX);
-		expectedCentrality = factory.getSimpleCentralityAnalysis(TestGraph.COMPLEX);		
+		graph = factory.getGraph(TestGraph.COMPLEX);
+		expectedCentrality = factory.getCentralityAnalysis(TestGraph.COMPLEX);		
 		analyzer = new JungAnalyzer<String,String>(graph);
 		actualCentrality = analyzer.calculateCentralityAnalysis();		
 	}
@@ -35,32 +36,37 @@ public class CentralityComplexTest {
 	@Test
 	public void shouldCalculateVerticeDegreeCentrality() {
 
-		CentralityBaseTests.shouldCalculateVerticeDegreeCentrality(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateVerticeDegreeCentrality(
+				expectedCentrality, actualCentrality);
 	}
 
 	@Test
 	public void shouldCalculateGraphDegreeCentrality() {
 		
-		CentralityBaseTests.shouldCalculateGraphDegreeCentrality(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateGraphDegreeCentrality(
+				expectedCentrality, actualCentrality);
 	}
 	
 	@Test
 	public void shouldCalculateVerticesBetweenessCentrality() {
 		
-		CentralityBaseTests.shouldCalculateVerticesBetweenessCentrality(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateVerticesBetweennessCentrality(
+				expectedCentrality, actualCentrality);
 	}
 
 	@Test
 	public void shouldCalculateVerticesClosenessCentrality() {
 		
-		CentralityBaseTests.shouldCalculateVerticesClosenessCentrality(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateVerticesClosenessCentrality(
+				expectedCentrality, actualCentrality);
 	}
 	
 	@Test
 	@Ignore
 	public void shouldCalculateVerticesPageRank() {
 		
-		CentralityBaseTests.shouldCalculateVerticesPageRank(expectedCentrality, actualCentrality);
+		CentralityBaseTests.shouldCalculateVerticesPageRank(
+				expectedCentrality, actualCentrality);
 	}
 
 }

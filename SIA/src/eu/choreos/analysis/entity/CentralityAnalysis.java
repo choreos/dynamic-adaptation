@@ -34,7 +34,7 @@ public interface CentralityAnalysis<V, E> {
 	 * Returns the betweeness centrality of each vertex of the graph
 	 * @return a map with the relation between each vertex and its betweeness centrality
 	 */
-	public Map<V, Double> getVerticesBetweenessCentrality();
+	public Map<V, Double> getVerticesBetweennessCentrality();
 
 	/**
 	 * Returns the closeness centrality of each vertex of the graph
