@@ -1,5 +1,6 @@
 package tests.util;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,19 @@ public class GraphFactory {
 	private Map<TestGraph, CentralityAnalysis<String,String>> centralities = new HashMap<TestGraph, CentralityAnalysis<String,String>>();
 	private Map<TestGraph, StabilityAnalysis> stabilities = new HashMap<TestGraph, StabilityAnalysis>();
 	
+	public Map<TestGraph, DirectedGraph<String,String>> getAllGraphs() {
+		
+		if (graphs.isEmpty()) 
+			createAllGraphs();
+		return Collections.unmodifiableMap(graphs);
+	}
+	
+	public Map<TestGraph, CentralityAnalysis<String,String>> getAllCentralities() {
+		
+		if (graphs.isEmpty()) 
+			createAllGraphs();
+		return Collections.unmodifiableMap(centralities);
+	}	
 	
 	public DirectedGraph<String,String> getGraph(TestGraph graph){
 			
@@ -42,6 +56,13 @@ public class GraphFactory {
 		return stabilities.get(graph);
 	}
 
+	private void createAllGraphs() {
+		
+		createSimpleGraph();
+		createComplexGraph();
+		createLoopGraph();
+	}
+	
 	private void createGraph(TestGraph graph) {
 		
 		switch (graph) {

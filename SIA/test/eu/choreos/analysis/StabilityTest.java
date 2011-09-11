@@ -42,4 +42,6 @@ public class StabilityTest {
 				actualStability.getOverallStability(), EPSILON);
 	}
 
+	// TODO LOOP stability
+	
 }
