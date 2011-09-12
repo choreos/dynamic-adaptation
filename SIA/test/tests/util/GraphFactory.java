@@ -262,28 +262,31 @@ public class GraphFactory {
 		
 		//Adds the edges
 		graph.addEdge("1", a, b);
-		graph.addEdge("2", a, c);
-		graph.addEdge("3", c, b);
+		graph.addEdge("2", c, a);
+		graph.addEdge("3", b, c);
 		graph.addEdge("4", d, a);
 		graph.addEdge("5", d, b);
 		
 		// create centrality analysis
 		
 		Map<String, DegreeCentrality> vDegCent = new HashMap<String, DegreeCentrality>();
-		vDegCent.put(a, new DegreeCentrality(1/3d, 2/3d));
-		vDegCent.put(b, new DegreeCentrality(1d, 0d));
+		vDegCent.put(a, new DegreeCentrality(2/3d, 1/3d));
+		vDegCent.put(b, new DegreeCentrality(2/3d, 1/3d));
 		vDegCent.put(c, new DegreeCentrality(1/3d, 1/3d));
 		vDegCent.put(d, new DegreeCentrality(0d, 2/3d));
 
 		Map<String, Double> vClosCent = new HashMap<String, Double>();
-		vClosCent.put(a, 1d);
-		vClosCent.put(b, Double.NaN);
-		vClosCent.put(c, 1d);
+		vClosCent.put(a, 4/9d);
+		vClosCent.put(b, 4/9d);
+		vClosCent.put(c, 4/9d);
 		vClosCent.put(d, 3/4d);
 
 		Map<String, Double> vBetwCent = new HashMap<String, Double>();
-		//vBetwCent.put(a, 1d); // TODO
-
+		vBetwCent.put(a, 1/6d); 
+		vBetwCent.put(b, 1/3d); 
+		vBetwCent.put(c, 1/6d); 
+		vBetwCent.put(d, 0d); 
+		
 		Map<String, Double> pageRank = new HashMap<String, Double>();
 		pageRank.put(a, 0d); 
 		pageRank.put(b, 0d); 
@@ -292,12 +295,12 @@ public class GraphFactory {
 
 		CentralityResults<String,String> centralityAnalysis = new CentralityResults<String,String>(graph);
 		centralityAnalysis.setVerticesDegreeCentrality(vDegCent);
-		centralityAnalysis.setGraphDegreeCentrality(new DegreeCentrality(7/18d, 1/6d));
+		centralityAnalysis.setGraphDegreeCentrality(new DegreeCentrality(1/6d, 1/6d));
 		centralityAnalysis.setVerticesClosenessCentrality(vClosCent);
 		centralityAnalysis.setVerticesBetweenessCentrality(vBetwCent);
 		centralityAnalysis.setVerticesPageRank(pageRank);
 		
-		StabilityAnalysis stabilityAnalysis = new StabilityResults(5/8d);
+		StabilityAnalysis stabilityAnalysis = new StabilityResults(7/16d);
 		
 		graphs.put(TestGraph.LOOP, graph);
 		centralities.put(TestGraph.LOOP, centralityAnalysis);

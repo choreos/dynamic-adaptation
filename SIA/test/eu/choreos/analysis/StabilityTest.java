@@ -42,6 +42,18 @@ public class StabilityTest {
 				actualStability.getOverallStability(), EPSILON);
 	}
 
-	// TODO LOOP stability
+	@Test
+	public void shouldCalculateLoopOverallStability() {
+			
+		GraphFactory factory = new GraphFactory();
+		DirectedGraph<String,String> graph = factory.getGraph(TestGraph.LOOP);
+		StabilityAnalysis expectedStability = factory.getStabilityAnalysis(TestGraph.LOOP);
+		
+		JungAnalyzer<String,String> depAnalyzer = new JungAnalyzer<String,String>(graph);
+		StabilityAnalysis actualStability = depAnalyzer.calculateStabilityAnalysis();
+		
+		assertEquals(expectedStability.getOverallStability(),
+				actualStability.getOverallStability(), EPSILON);
+	}
 	
 }

@@ -49,7 +49,7 @@ public class VerticesClosenessCentralityTest {
 	}
 
 	@Test
-	public void shouldCalculateLoopVerticeDegreeCentrality() {
+	public void shouldCalculateLoopVerticesClosenessCentrality() {
 
 		CentralityBaseTests.shouldCalculateVerticesClosenessCentrality(
 				expectedCentralities.get(TestGraph.LOOP), actualCentralities.get(TestGraph.LOOP));
