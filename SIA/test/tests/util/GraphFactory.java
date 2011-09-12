@@ -79,9 +79,9 @@ public class GraphFactory {
 	}
 	
 	/**
-	 * TODO: Draw ASCI version of graph
-	 * FIXME: Este método está sobrecarregado! Ele só deveria criar o grafo
-	 * (e não calcular as centralidades)
+	 *   a <---> b
+	 *   |
+	 *   |----> c
 	 */
 	private void createSimpleGraph() {
 
@@ -139,11 +139,14 @@ public class GraphFactory {
 		centralities.put(TestGraph.SIMPLE, centralityAnalysis);
 		stabilities.put(TestGraph.SIMPLE, stabilityAnalysis);
 	}
-
+	
 	/**
-	 * TODO: Draw ASCI version of graph
-	 * FIXME: Este método está sobrecarregado! Ele só deveria criar o grafo
-	 * (e não calcular as centralidades)
+	 * f <--- c       |------> b
+	 *        ^       |
+	 *        |------ a -----> e <---> g
+	 *                ^        ^
+	 *                |        |--- h
+	 *                d
 	 */
 	private void createComplexGraph() {
 
@@ -238,9 +241,10 @@ public class GraphFactory {
 	}
 
 	/**
-	 * TODO: Draw ASCI version of graph
-	 * FIXME: Este método está sobrecarregado! Ele só deveria criar o grafo
-	 * (e não calcular as centralidades)
+	 *   |-------------- b <-------|
+	 *   |               ^         |
+	 *   |               |         |
+	 *   |---> c ------> a <------ d
 	 */
 	private void createLoopGraph() {
 
