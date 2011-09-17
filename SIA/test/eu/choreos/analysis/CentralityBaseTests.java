@@ -82,7 +82,7 @@ public class CentralityBaseTests {
 		Map<String, Double> calculated = actualCentrality.getVerticesPageRank();
 		
 		for (String v: expected.keySet()) {
-			assertEquals(expected.get(v), calculated.get(v));
+			assertEquals(expected.get(v), calculated.get(v), 0.01);
 		}		
 	}	
 }

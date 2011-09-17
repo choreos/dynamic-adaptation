@@ -12,6 +12,13 @@ import eu.choreos.analysis.entity.DegreeCentrality;
 import eu.choreos.analysis.entity.StabilityAnalysis;
 import eu.choreos.analysis.entity.StabilityResults;
 
+/**
+ * Page Rank calculations performed through http://www.webworkshop.net/pagerank_calculator.php?pgs=5
+ * This page uses a damping factor of 0.15 and PR_0(v) = 0.15 \forall v \in V
+ * 
+ * @author leonardo
+ *
+ */
 public class GraphFactory {
 
 	public enum TestGraph {SIMPLE, COMPLEX, LOOP};
@@ -122,9 +129,9 @@ public class GraphFactory {
 		vBetwCent.put(c, 0d);
 
 		Map<String, Double> pageRank = new HashMap<String, Double>();
-		pageRank.put(a, 0d);
-		pageRank.put(b, 0d);
-		pageRank.put(c, 0d);
+		pageRank.put(a, 0.4344423);
+		pageRank.put(b, 0.334638);
+		pageRank.put(c, 0.334638);
 
 		CentralityResults<String,String> centralityAnalysis = new CentralityResults<String,String>(graph);
 		centralityAnalysis.setVerticesDegreeCentrality(vDegCent);

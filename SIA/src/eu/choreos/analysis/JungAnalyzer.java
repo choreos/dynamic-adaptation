@@ -60,7 +60,7 @@ public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 		centralityResults.setVerticesBetweenessCentrality(betweenessCalc.calculateVerticesBetweennessCentrality(this.graph));
 		
 		PageRankCalculator<V, E> pageRankCalc = new PageRankCalculator<V, E>();
-		centralityResults.setVerticesPageRank(pageRankCalc.calculateVerticesPageRankCentrality(graph));
+		centralityResults.setVerticesPageRank(pageRankCalc.calculatePageRank(graph));
 		
 		return centralityResults;
 	}
