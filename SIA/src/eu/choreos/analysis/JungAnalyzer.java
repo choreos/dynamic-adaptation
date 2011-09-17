@@ -1,8 +1,7 @@
 package eu.choreos.analysis;
 
+import java.util.HashSet;
 import java.util.Set;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.calc.BetweennessCentralityCalculator;
@@ -72,17 +71,45 @@ public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 	@Override
 	public Set<V> getButterflyNodes(double inDegreeThreshold) {
 
-		throw new NotImplementedException();
+		Set<V> criticalNodes = new HashSet<V>();
+		
+		CentralityAnalysis<V,E> analysis = this.calculateCentralityAnalysis();
+		for (V v: analysis.getVerticesDegreeCentrality().keySet()) {
+			if (analysis.getVerticesDegreeCentrality().get(v).getInDegree() > inDegreeThreshold)
+				criticalNodes.add(v);
+		}
+		
+		return criticalNodes;
 	}
 
 	@Override
 	public Set<V> getSensitiveNodes(double outDegreeThreshold) {
-		throw new NotImplementedException();
+
+		Set<V> criticalNodes = new HashSet<V>();
+		
+		CentralityAnalysis<V,E> analysis = this.calculateCentralityAnalysis();
+		for (V v: analysis.getVerticesDegreeCentrality().keySet()) {
+			if (analysis.getVerticesDegreeCentrality().get(v).getOutDegree() > outDegreeThreshold)
+				criticalNodes.add(v);
+		}
+		
+		return criticalNodes;
 	}
 
 	@Override
-	public Set<V> getHubNodes(double DegreeThreshold) {
-		throw new NotImplementedException();
+	public Set<V> getHubNodes(double degreeThreshold) {
+
+		Set<V> criticalNodes = new HashSet<V>();
+		
+		CentralityAnalysis<V,E> analysis = this.calculateCentralityAnalysis();
+		for (V v: analysis.getVerticesDegreeCentrality().keySet()) {
+			if ((analysis.getVerticesDegreeCentrality().get(v).getInDegree() > degreeThreshold)
+					&& (analysis.getVerticesDegreeCentrality().get(v).getOutDegree() > degreeThreshold))
+				criticalNodes.add(v);
+		}
+		
+		return criticalNodes;
+
 	}
 	
 }
