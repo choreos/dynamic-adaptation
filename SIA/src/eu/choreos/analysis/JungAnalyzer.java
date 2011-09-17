@@ -1,5 +1,9 @@
 package eu.choreos.analysis;
 
+import java.util.Set;
+
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.analysis.calc.BetweennessCentralityCalculator;
 import eu.choreos.analysis.calc.ClosenessCentralityCalculator;
@@ -63,6 +67,22 @@ public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 		centralityResults.setVerticesPageRank(pageRankCalc.calculatePageRank(graph));
 		
 		return centralityResults;
+	}
+
+	@Override
+	public Set<V> getButterflyNodes(double inDegreeThreshold) {
+
+		throw new NotImplementedException();
+	}
+
+	@Override
+	public Set<V> getSensitiveNodes(double outDegreeThreshold) {
+		throw new NotImplementedException();
+	}
+
+	@Override
+	public Set<V> getHubNodes(double DegreeThreshold) {
+		throw new NotImplementedException();
 	}
 	
 }
