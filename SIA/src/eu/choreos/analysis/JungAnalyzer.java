@@ -16,9 +16,8 @@ import eu.choreos.analysis.entity.StabilityResults;
 
 public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 	
-	// TODO:  in this class we have some heavy computations
-	// would be nice having some caching...
-	// hint: JUNG API provides a Caching interface
+	private CentralityAnalysis<V,E> centralityAnalysis;
+	private StabilityAnalysis stabilityAnalysis;
 	
 	private DirectedGraph<V, E> graph;
 	
@@ -35,14 +34,19 @@ public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 
 	public void setGraph(DirectedGraph<V, E> graph) {
 		this.graph = graph;
+		this.centralityAnalysis = null;
+		this.stabilityAnalysis = null;
 	}
 
 	
 	public StabilityAnalysis calculateStabilityAnalysis(){
 		
-		StabilityCalculator<V, E> calculator = new StabilityCalculator<V, E>();
-		double overallStability = calculator.calculateOverallStability(this.graph);
-		return new StabilityResults(overallStability);
+		if (this.stabilityAnalysis == null) {
+			StabilityCalculator<V, E> calculator = new StabilityCalculator<V, E>();
+			double overallStability = calculator.calculateOverallStability(this.graph);
+			this.stabilityAnalysis = new StabilityResults(overallStability);
+		}
+		return this.stabilityAnalysis;
 	}
 	
 	public CentralityAnalysis<V, E> calculateCentralityAnalysis(){
@@ -50,6 +54,9 @@ public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 		if (this.graph == null)
 			throw new IllegalStateException("The graph should not be null");		
 		
+		if (this.centralityAnalysis != null)
+			return this.centralityAnalysis;
+			
 		CentralityResults<V, E> centralityResults = new CentralityResults<V, E>(graph);
 		
 		DegreeCentralityCalculator<V,E> degreeCalc = new DegreeCentralityCalculator<V,E>();
@@ -65,6 +72,7 @@ public class JungAnalyzer<V, E> implements DependencyAnalyzer<V, E> {
 		PageRankCalculator<V, E> pageRankCalc = new PageRankCalculator<V, E>();
 		centralityResults.setVerticesPageRank(pageRankCalc.calculatePageRank(graph));
 		
+		this.centralityAnalysis = centralityResults;
 		return centralityResults;
 	}
 
