@@ -1,0 +1,78 @@
+package eu.choreos.wp2.sia.analysis.detectors;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.Set;
+
+import edu.uci.ics.jung.graph.DirectedGraph;
+import eu.choreos.wp2.sia.graph.entity.DegreeCentrality;
+
+public class HubDetector<V,E> extends AbstractNodeDetector<V, E>{
+	
+	private DirectedGraph<V, E> graph;
+	
+	private int localInThreshold;
+	private int localOutThreshold;
+	
+	private double globalInThreshold;
+	private double globalOutThreshold;
+	
+	public HubDetector(DirectedGraph<V, E> graph){
+		this.graph = graph;
+		setThresholds();
+	}
+
+	public Set<V> detectLocalHubs(){
+		return detectLocalNodes(graph);
+	}
+	
+	public Set<V> detectGlobalHubs(){
+		return detectLocalNodes(graph);
+	}
+	
+	@Override
+	protected boolean isLocal(DegreeCentrality degreeCentrality) {
+		return degreeCentrality.getInDegree() > localInThreshold && 
+				degreeCentrality.getOutDegree() > localOutThreshold;
+	}
+
+	@Override
+	protected boolean isGlobal(DegreeCentrality degreeCentrality) {
+		int totalNodes = graph.getVertexCount();
+		
+		double percentTotalIn = degreeCentrality.getInDegree() / totalNodes;
+		double percentTotalOut = degreeCentrality.getOutDegree() / totalNodes; 
+		
+		return  percentTotalIn > globalInThreshold &&
+				percentTotalOut > globalOutThreshold;
+	}
+	
+	private void setThresholds(){
+		try{
+			Properties properties = new Properties();
+			properties.load(new FileInputStream("./resources/thresholds.properties"));
+			
+			this.localInThreshold = 
+					Integer.parseInt(
+							properties.getProperty("local_hub_in"));
+			
+			this.localOutThreshold = 
+					Integer.parseInt(
+							properties.getProperty("local_hub_out"));
+			
+			
+			this.globalInThreshold = 
+					Double.parseDouble(
+							properties.getProperty("global_hub_in"));
+			
+			this.globalOutThreshold = 
+					Double.parseDouble(
+							properties.getProperty("global_hub_out"));
+			
+		}catch(IOException e){
+			System.out.println("Could not read properties file");
+			e.printStackTrace();
+		}
+	}
+}
