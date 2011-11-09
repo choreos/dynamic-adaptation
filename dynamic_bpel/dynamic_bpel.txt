@@ -1,0 +1,51 @@
+Dynamic Partner Link
+http://www.oracle.com/technetwork/articles/carey-090553.html
+
+#1
+define-se partnerLink com partnerLinkType genérico, sendo que no partnerLinkType, faz-se o partnerLinktType apontar para um WSDL no qual haverá várias tags service's que representam as opções disponíveis.
+
+Dúvida: nesse caso a engine BPEL seleciona um dos serviços disponíveis?
+
+#2
+Usuário fornece entrada dizendo qual serviço utilizar
+Neste caso, temos um assign de um XML representando um EndpointReference para uma variável BPEL (EndpointReference define ServiceName e Address). Depois essa variável é atribuída ao partnerLink.
+
+Obs: aqui ainda precisamos definir o endereço do serviço em tempo de design.
+Se não definirmos o Address no Assign, será utilizado o endereço definido no Service do WSDL (o relação será feito pelo valor de ServiceName)
+
+Dúvida: como fazer essa última atribuição? [código]
+ Figura 5, não explicado direito...
+ Ah, mais em baixo:
+   <assign name="DoPartnerlink">
+      <copy>
+        <from variable="partnerReference"/>
+        <to partnerLink="LoanService"/> <!-- é diretão mesmo! -->
+      </copy>
+    </assign>
+
+#3
+WSDL independent
+Da mesma forma que no exemplo anterior vimos que podíamos definir o ServiceName sem o Address, podemos também definir o Address sem o ServiceName, de forma que o serviço invocado será o definido no Address, que não terá relação nenhum com o WSDL.
+Mas se o Service do WSDL contiver um Service, seu endereço será um default para caso a invocação do serviço seja feito sem a atribuição que definimos no parágrafo anterior.
+
+#4
+Chamando vários serviços...
+útil no caso do supermercado: o loop que itera os supermercados existentes pode ficar no BPEL, e não na implementação de um serviço!
+Não que isso fique bonito =P
+
+Obs: uma vez feita as chamadas, é preciso esperar as respostas!
+It is not recommended to proceed out of the <receive> while loop until all of asynchronous responses have been collected. 
+~> pode ser um problema para a large scale
+
+CONCLUSÕES
+
+"In essence, the **endpoint reference** is a dynamic alternative to the static service element defined in the WSDL."
+
+Estudar: WS-Addressing
+
+Neste tutorial não há a noção de "papel".
+
+Possível experimento:
+One application of this technique is in building a framework for exception handling. If you have more than one available address where a given service is available (such as a local server and a remote redundant server), you can roll-over to the secondary address when a call to the primary fails by using an exception handler to override the address information in the endpoint reference and retry the invocation of the service. 
+
+
