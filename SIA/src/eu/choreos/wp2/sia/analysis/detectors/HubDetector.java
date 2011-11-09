@@ -30,13 +30,13 @@ public class HubDetector extends AbstractNodeDetector{
 	}
 	
 	public Set<Vertex> detectGlobalHubs(){
-		return detectLocalNodes(graph);
+		return detectGlobalNodes(graph);
 	}
 	
 	@Override
 	protected boolean isLocal(DegreeCentrality degreeCentrality) {
-		return degreeCentrality.getInDegree() > localInThreshold && 
-				degreeCentrality.getOutDegree() > localOutThreshold;
+		return degreeCentrality.getInDegree() >= localInThreshold && 
+				degreeCentrality.getOutDegree() >= localOutThreshold;
 	}
 
 	@Override
@@ -46,8 +46,8 @@ public class HubDetector extends AbstractNodeDetector{
 		double percentTotalIn = degreeCentrality.getInDegree() / totalNodes;
 		double percentTotalOut = degreeCentrality.getOutDegree() / totalNodes; 
 		
-		return  percentTotalIn > globalInThreshold &&
-				percentTotalOut > globalOutThreshold;
+		return  percentTotalIn >= globalInThreshold &&
+				percentTotalOut >= globalOutThreshold;
 	}
 	
 	private void setThresholds(){

@@ -27,19 +27,19 @@ public class ButterflyDetector extends AbstractNodeDetector{
 	}
 	
 	public Set<Vertex> detectGlobalButterflies(){
-		return detectLocalNodes(graph);
+		return detectGlobalNodes(graph);
 	}
 	
 	@Override
 	protected boolean isLocal(DegreeCentrality degreeCentrality) {
-		return degreeCentrality.getOutDegree() > localThreshold;
+		return degreeCentrality.getInDegree() >= localThreshold;
 	}
 
 	@Override
 	protected boolean isGlobal(DegreeCentrality degreeCentrality) {
 		int totalNodes = graph.getVertexCount();
-		double percentTotal = degreeCentrality.getOutDegree() / totalNodes; 
-		return  percentTotal > globalThreshold;
+		double percentTotal = degreeCentrality.getInDegree() / totalNodes; 
+		return  percentTotal >= globalThreshold;
 	}
 
 

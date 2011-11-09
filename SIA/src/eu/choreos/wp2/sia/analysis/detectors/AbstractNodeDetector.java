@@ -33,7 +33,7 @@ public abstract class AbstractNodeDetector {
 		return localNodes;
 	}
 	
-	protected Set<Vertex> detectGlobal(DirectedGraph<Vertex, Edge> graph) {
+	protected Set<Vertex> detectGlobalNodes(DirectedGraph<Vertex, Edge> graph) {
 
 		Set<Vertex> localNodes = new HashSet<Vertex>();
 		
