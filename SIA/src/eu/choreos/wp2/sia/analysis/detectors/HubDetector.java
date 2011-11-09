@@ -7,10 +7,12 @@ import java.util.Set;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.wp2.sia.graph.entity.DegreeCentrality;
+import eu.choreos.wp2.sia.graph.entity.Edge;
+import eu.choreos.wp2.sia.graph.entity.Vertex;
 
-public class HubDetector<V,E> extends AbstractNodeDetector<V, E>{
+public class HubDetector extends AbstractNodeDetector{
 	
-	private DirectedGraph<V, E> graph;
+	private DirectedGraph<Vertex, Edge> graph;
 	
 	private int localInThreshold;
 	private int localOutThreshold;
@@ -18,16 +20,16 @@ public class HubDetector<V,E> extends AbstractNodeDetector<V, E>{
 	private double globalInThreshold;
 	private double globalOutThreshold;
 	
-	public HubDetector(DirectedGraph<V, E> graph){
+	public HubDetector(DirectedGraph<Vertex, Edge> graph){
 		this.graph = graph;
 		setThresholds();
 	}
 
-	public Set<V> detectLocalHubs(){
+	public Set<Vertex> detectLocalHubs(){
 		return detectLocalNodes(graph);
 	}
 	
-	public Set<V> detectGlobalHubs(){
+	public Set<Vertex> detectGlobalHubs(){
 		return detectLocalNodes(graph);
 	}
 	

@@ -3,23 +3,37 @@ package eu.choreos.wp2.sia.analysis;
 import java.util.List;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
-import eu.choreos.wp2.sia.analysis.entity.AntiPatternReport;
+import eu.choreos.wp2.sia.analysis.converters.ChoreographyModelToGraphConverter;
+import eu.choreos.wp2.sia.analysis.converters.CoordinationDelegatesToGraphConverter;
+import eu.choreos.wp2.sia.analysis.entity.report.AntiPatternReport;
 import eu.choreos.wp2.sia.graph.algorithms.StabilityCalculator;
+import eu.choreos.wp2.sia.graph.entity.Edge;
+import eu.choreos.wp2.sia.graph.entity.Vertex;
 import eu.choreos.wp3.middleware.entity.ChoreographyModel;
 import eu.choreos.wp3.middleware.entity.CoordinationDelegate;
 
-public class JungAnalyzer<V, E> implements SIA{
+public class JungAnalyzer implements SIA{
+	
+	private ChoreographyModelToGraphConverter chorToGraphConverter;
+	private CoordinationDelegatesToGraphConverter coordelToGraphConverter;
+	
+	public JungAnalyzer(
+			ChoreographyModelToGraphConverter chorToGraphConverter, 
+			CoordinationDelegatesToGraphConverter coordelToGraphConverter){
+		
+		this.chorToGraphConverter = chorToGraphConverter;
+		this.coordelToGraphConverter = coordelToGraphConverter;
+	}
 	
 	@Override
 	public Double calculateOverallStability(
 			ChoreographyModel choreographyModel) {
 		
-		//TODO: Convert from a choreographyModel (BPMN2 in memory 
-		//representation) to a directed graph		
-		DirectedGraph<V,E> graph = null;
+		DirectedGraph<Vertex, Edge> graph = 
+				chorToGraphConverter.convert(choreographyModel);
 		
-		StabilityCalculator<V, E> stabilityCalculator = 
-				new StabilityCalculator<V,E>();
+		StabilityCalculator stabilityCalculator = 
+				new StabilityCalculator();
 		
 		Double stability = stabilityCalculator.calculateOverallStability(graph);		
 		return stability;
@@ -29,24 +43,25 @@ public class JungAnalyzer<V, E> implements SIA{
 	public Double calculateOverallStability(
 			List<CoordinationDelegate> coordinationDelegates) {
 		
-		//TODO: Convert from a Coordination Delegates to a directed graph				
-		DirectedGraph<V,E> graph = null;
+		DirectedGraph<Vertex,Edge> graph = 
+				coordelToGraphConverter.convert(coordinationDelegates);
 				
-		StabilityCalculator<V, E> stabilityCalculator = 
-				new StabilityCalculator<V,E>();
+		StabilityCalculator stabilityCalculator = new StabilityCalculator();
 			
 		Double stability = stabilityCalculator.calculateOverallStability(graph);
 		return stability;
 	}
 	
-	public AntiPatternReport<V,E> findAntiPatterns(DirectedGraph<V, E> graph){
+	public AntiPatternReport findAntiPatterns(
+			List<CoordinationDelegate> coordinationDelegates){
 		
-		//TODO: Convert from a Coordination Delegates to a directed graph				
-		//DirectedGraph<V,E> graph = null;		
+		DirectedGraph<Vertex,Edge> graph = 
+				coordelToGraphConverter.convert(coordinationDelegates);		
 		
-		AntiPatternReport<V,E> antiPatternsReport = 
-				new AntiPatternReport<V,E>(graph);
+		AntiPatternReport antiPatternsReport = 
+				new AntiPatternReport(graph);
 		
 		return antiPatternsReport;
 	}
+	
 }

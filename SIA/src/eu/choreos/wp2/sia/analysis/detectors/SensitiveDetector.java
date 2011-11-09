@@ -7,23 +7,25 @@ import java.util.Set;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.wp2.sia.graph.entity.DegreeCentrality;
+import eu.choreos.wp2.sia.graph.entity.Edge;
+import eu.choreos.wp2.sia.graph.entity.Vertex;
 
-public class SensitiveDetector<V,E> extends AbstractNodeDetector<V, E>{
+public class SensitiveDetector extends AbstractNodeDetector{
 	
-	private DirectedGraph<V, E> graph;
+	private DirectedGraph<Vertex, Edge> graph;
 	private int localThreshold;
 	private double globalThreshold;
 	
-	public SensitiveDetector(DirectedGraph<V, E> graph){
+	public SensitiveDetector(DirectedGraph<Vertex, Edge> graph){
 		this.graph = graph;
 		setThresholds();
 	}
 
-	public Set<V> detectLocalSensitives(){
+	public Set<Vertex> detectLocalSensitives(){
 		return detectLocalNodes(graph);
 	}
 	
-	public Set<V> detectGlobalSensitives(){
+	public Set<Vertex> detectGlobalSensitives(){
 		return detectLocalNodes(graph);
 	}
 	

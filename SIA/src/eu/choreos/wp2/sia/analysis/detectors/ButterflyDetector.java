@@ -7,24 +7,26 @@ import java.util.Set;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.wp2.sia.graph.entity.DegreeCentrality;
+import eu.choreos.wp2.sia.graph.entity.Edge;
+import eu.choreos.wp2.sia.graph.entity.Vertex;
 
 
-public class ButterflyDetector<V,E> extends AbstractNodeDetector<V, E>{
+public class ButterflyDetector extends AbstractNodeDetector{
 	
-	private DirectedGraph<V, E> graph;
+	private DirectedGraph<Vertex, Edge> graph;
 	private int localThreshold;
 	private double globalThreshold;
 	
-	public ButterflyDetector(DirectedGraph<V, E> graph){
+	public ButterflyDetector(DirectedGraph<Vertex, Edge> graph){
 		this.graph = graph;
 		setThresholds();
 	}
 
-	public Set<V> detectLocalButterflies(){
+	public Set<Vertex> detectLocalButterflies(){
 		return detectLocalNodes(graph);
 	}
 	
-	public Set<V> detectGlobalButterflies(){
+	public Set<Vertex> detectGlobalButterflies(){
 		return detectLocalNodes(graph);
 	}
 	

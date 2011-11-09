@@ -8,18 +8,16 @@ package eu.choreos.wp2.sia.visualization;
  */
 
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import eu.choreos.wp2.sia.graph.entity.Edge;
+import eu.choreos.wp2.sia.graph.entity.Vertex;
 
-/**
- * An interface for menu items that are interested in knowning the currently selected edge and
- * its visualization component context.  Used with PopupVertexEdgeMenuMousePlugin.
- * @author Dr. Greg M. Bernstein
- */
-public interface EdgeMenuListener<E> {
+public interface EdgeMenuListener {
+	
     /**
      * Used to set the edge and visulization component.
      * @param e 
      * @param visComp 
      */
-     void setEdgeAndView(E e, VisualizationViewer visView); 
+     void setEdgeAndView(Edge e, VisualizationViewer<Vertex, Edge> visView); 
     
 }

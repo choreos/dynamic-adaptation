@@ -7,21 +7,23 @@ import java.util.Set;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import eu.choreos.wp2.sia.graph.algorithms.DegreeCentralityCalculator;
 import eu.choreos.wp2.sia.graph.entity.DegreeCentrality;
+import eu.choreos.wp2.sia.graph.entity.Edge;
+import eu.choreos.wp2.sia.graph.entity.Vertex;
 import eu.choreos.wp2.sia.graph.util.GraphUtils;
 
-public abstract class AbstractNodeDetector<V,E> {
+public abstract class AbstractNodeDetector {
 	
-	protected Set<V> detectLocalNodes(DirectedGraph<V, E> graph) {
+	protected Set<Vertex> detectLocalNodes(DirectedGraph<Vertex, Edge> graph) {
 
-		Set<V> localNodes = new HashSet<V>();
+		Set<Vertex> localNodes = new HashSet<Vertex>();
 		
-		DegreeCentralityCalculator<V,E> degreeCalculator = 
-				new DegreeCentralityCalculator<V,E>();
+		DegreeCentralityCalculator degreeCalculator = 
+				new DegreeCentralityCalculator();
 		
-		Map<V,DegreeCentrality> degreeCentralityResults = 
+		Map<Vertex,DegreeCentrality> degreeCentralityResults = 
 				degreeCalculator.calculateVerticesDegreeCentrality(graph);
 	
-		for (V v: degreeCentralityResults.keySet()) {
+		for (Vertex v: degreeCentralityResults.keySet()) {
 			DegreeCentrality degreeCentrality = degreeCentralityResults.get(v);
 			if (isLocal(degreeCentrality)){
 				localNodes.add(v);
@@ -31,25 +33,22 @@ public abstract class AbstractNodeDetector<V,E> {
 		return localNodes;
 	}
 	
-	protected Set<V> detectGlobal(DirectedGraph<V, E> graph) {
+	protected Set<Vertex> detectGlobal(DirectedGraph<Vertex, Edge> graph) {
 
-		Set<V> localNodes = new HashSet<V>();
+		Set<Vertex> localNodes = new HashSet<Vertex>();
 		
 		//Computes the transitive closure
-		GraphUtils<V,E> graphUtils = new GraphUtils<V, E>();
-		DirectedGraph<V,String> transitiveClosure = 
-				graphUtils.computeTransitiveClosure(graph);
+		DirectedGraph<Vertex,Edge> transitiveClosure = 
+				GraphUtils.computeTransitiveClosure(graph);
 
 		//Calculates degree centrality
-		DegreeCentralityCalculator<V,String> degreeCalculator = 
-				new DegreeCentralityCalculator<V,String>();
+		DegreeCentralityCalculator degreeCalculator = 
+				new DegreeCentralityCalculator();
 		
-		Map<V,DegreeCentrality> degreeCentralityResults = 
+		Map<Vertex,DegreeCentrality> degreeCentralityResults = 
 				degreeCalculator.calculateVerticesDegreeCentrality(transitiveClosure);
 	
-		int totalNodes = transitiveClosure.getVertexCount();
-		
-		for (V v: degreeCentralityResults.keySet()) {
+		for (Vertex v: degreeCentralityResults.keySet()) {
 			DegreeCentrality degreeCentrality = degreeCentralityResults.get(v);
 			if (isGlobal(degreeCentrality)){
 				localNodes.add(v);

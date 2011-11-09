@@ -15,8 +15,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
 
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -24,8 +22,9 @@ import org.apache.commons.collections15.Transformer;
 
 import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import eu.choreos.wp2.sia.graph.entity.Edge;
+import eu.choreos.wp2.sia.graph.entity.Vertex;
 import eu.choreos.wp2.sia.graph.util.GraphUtils;
-import eu.choreos.wp2.sia.visualization.sample.Vertex;
 
 /**
  * A collection of classes used to assemble popup mouse menus for the custom
@@ -38,12 +37,8 @@ public class MyMouseMenus {
      
         public EdgeMenu() {
             super("Edge Menu");
-            this.addSeparator();
-            this.addSeparator();
-        }
-        
+        }    
     }
-    
     
     public static class VertexMenu extends JPopupMenu{
             	
@@ -53,23 +48,20 @@ public class MyMouseMenus {
         }
 
         public static class ChangeImpactAnalysis extends JMenuItem implements 
-        	VertexMenuListener<Vertex> {
+        	VertexMenuListener{
         
-        	private DirectedGraph<Vertex, String> graph;
+        	private DirectedGraph<Vertex, Edge> graph;
         	private Vertex v;
-        	private VisualizationViewer vv;
+        	private VisualizationViewer<Vertex, Edge> vv;
         	
         	public ChangeImpactAnalysis(){
-        		super("Change Impact Analysis");
+        		super("Perform ripple effect analysis");
         	    this.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                     	System.out.println("Performing Change Impact Analysis...");
                     	
-                    	GraphUtils<Vertex, String> graphUtils = 
-                    			new GraphUtils<Vertex, String>();
-                    	
-                    	DirectedGraph<Vertex, String> transitiveClosure = 
-                    			graphUtils.computeTransitiveClosure(graph);
+                    	DirectedGraph<Vertex, Edge> transitiveClosure = 
+                    			GraphUtils.computeTransitiveClosure(graph);
                     	
                     	final Collection<Vertex> predecessors = 
                     			transitiveClosure.getPredecessors(v);
@@ -78,19 +70,18 @@ public class MyMouseMenus {
                 		Transformer<Vertex,Paint> paintTransformer = new Transformer<Vertex,Paint>() {
                 			public Paint transform(Vertex otherVertex) {
                 				if (predecessors.contains(otherVertex)){
-                					return Color.WHITE;
+                					return Color.YELLOW;
                 				}
                 				else if(otherVertex.equals(v)){
                 					return Color.GREEN;
                 				}
                 				else{
-                					return Color.YELLOW;
+                					return Color.WHITE;
                 				}
                 			}
                 		};
-                		
-                		System.out.println(vv);
-                		vv.getRenderContext().setVertexFillPaintTransformer(paintTransformer);
+                		                		
+                 		vv.getRenderContext().setVertexFillPaintTransformer(paintTransformer);
                 		vv.updateUI();
                     }
                     
@@ -98,7 +89,8 @@ public class MyMouseMenus {
         	}
         	
 			@Override
-			public void setVertexAndView(DirectedGraph graph, Vertex v, VisualizationViewer vv) {
+			public void setVertexAndView(DirectedGraph<Vertex, Edge> graph, 
+					Vertex v, VisualizationViewer<Vertex, Edge> vv) {
 				this.graph = graph;
 				this.v = v;
 				this.vv = vv;

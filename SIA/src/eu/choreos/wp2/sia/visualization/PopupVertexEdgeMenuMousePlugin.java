@@ -9,6 +9,7 @@ package eu.choreos.wp2.sia.visualization;
  *
  */
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
@@ -19,7 +20,9 @@ import edu.uci.ics.jung.algorithms.layout.GraphElementAccessor;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.AbstractPopupGraphMousePlugin;
-import eu.choreos.wp2.sia.visualization.sample.Vertex;
+import edu.uci.ics.jung.visualization.decorators.PickableVertexPaintTransformer;
+import eu.choreos.wp2.sia.graph.entity.Edge;
+import eu.choreos.wp2.sia.graph.entity.Vertex;
 
 /**
  * A GraphMousePlugin that brings up distinct popup menus when an edge or vertex is
@@ -29,13 +32,13 @@ import eu.choreos.wp2.sia.visualization.sample.Vertex;
  * context sensitive information for the edge or vertex).
  * @author Dr. Greg M. Bernstein
  */
-public class PopupVertexEdgeMenuMousePlugin<V, E> extends AbstractPopupGraphMousePlugin {
+public class PopupVertexEdgeMenuMousePlugin extends AbstractPopupGraphMousePlugin {
     
 	private JPopupMenu edgePopup, vertexPopup;
-    private DirectedGraph<V, E> graph;
+    private DirectedGraph<Vertex, Edge> graph;
     
     /** Creates a new instance of PopupVertexEdgeMenuMousePlugin */
-    public PopupVertexEdgeMenuMousePlugin(DirectedGraph<V,E> graph) {
+    public PopupVertexEdgeMenuMousePlugin(DirectedGraph<Vertex,Edge> graph) {
     	this(MouseEvent.BUTTON3_MASK);
     	this.graph = graph;
     }
@@ -55,21 +58,21 @@ public class PopupVertexEdgeMenuMousePlugin<V, E> extends AbstractPopupGraphMous
      */
     protected void handlePopup(MouseEvent e) {
         
-    	final VisualizationViewer vv =
-                (VisualizationViewer)e.getSource();
+    	final VisualizationViewer<Vertex, Edge> vv =
+                (VisualizationViewer<Vertex, Edge>)e.getSource();
         
     	Point2D p = e.getPoint();
         
-        GraphElementAccessor<V,E> pickSupport = vv.getPickSupport();
+        GraphElementAccessor<Vertex, Edge> pickSupport = vv.getPickSupport();
         if(pickSupport != null) {
-        	final V v = pickSupport.getVertex(vv.getGraphLayout(), p.getX(), p.getY());
+        	final Vertex v = pickSupport.getVertex(vv.getGraphLayout(), p.getX(), p.getY());
             if(v != null) {
                 System.out.println("Vertex " + v + " was right clicked");
                 vertexPopup = new MyMouseMenus.VertexMenu();
                 updateVertexMenu(graph, v, vv, p);
                 vertexPopup.show(vv, e.getX(), e.getY());
             } else {
-                final E edge = pickSupport.getEdge(vv.getGraphLayout(), p.getX(), p.getY());
+                final Edge edge = pickSupport.getEdge(vv.getGraphLayout(), p.getX(), p.getY());
                 if(edge != null) {
                     System.out.println("Edge " + edge + " was right clicked");
                     updateEdgeMenu(edge, vv, p);
@@ -79,18 +82,18 @@ public class PopupVertexEdgeMenuMousePlugin<V, E> extends AbstractPopupGraphMous
         }
     }
     
-    private void updateVertexMenu(DirectedGraph graph, V v, VisualizationViewer vv, Point2D point) {
-        if (vertexPopup == null) return;
-        Component[] menuComps = vertexPopup.getComponents();
-        for (Component comp: menuComps) {
-            if (comp instanceof VertexMenuListener) {
-                ((VertexMenuListener)comp).setVertexAndView(graph, v, vv);
-            }
-            if (comp instanceof MenuPointListener) {
-                ((MenuPointListener)comp).setPoint(point);
-            }
-        }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    	super.mouseClicked(e);
+    	
+    	System.out.println("Mouse clicked");
+    	
+    	final VisualizationViewer<Vertex, Edge> vv =
+                (VisualizationViewer<Vertex, Edge>)e.getSource();
         
+    	vv.getRenderContext().setVertexFillPaintTransformer(
+    			new PickableVertexPaintTransformer<Vertex>(
+						vv.getPickedVertexState(), Color.white, Color.yellow));
     }
     
     /**
@@ -125,15 +128,25 @@ public class PopupVertexEdgeMenuMousePlugin<V, E> extends AbstractPopupGraphMous
         this.vertexPopup = vertexPopup;
     }
     
-    private void updateEdgeMenu(E edge, VisualizationViewer vv, Point2D point) {
+    //Ugly code
+    private void updateVertexMenu(DirectedGraph<Vertex, Edge> graph, 
+    		Vertex v, VisualizationViewer<Vertex, Edge> vv, Point2D point) {
+        
+    	if (vertexPopup == null) return;
+        Component[] menuComps = vertexPopup.getComponents();
+        for (Component comp: menuComps) {
+            if (comp instanceof VertexMenuListener) {
+                ((VertexMenuListener)comp).setVertexAndView(graph, v, vv);
+            }
+        }
+    }
+    
+    private void updateEdgeMenu(Edge edge, VisualizationViewer<Vertex, Edge> vv, Point2D point) {
         if (edgePopup == null) return;
         Component[] menuComps = edgePopup.getComponents();
         for (Component comp: menuComps) {
             if (comp instanceof EdgeMenuListener) {
                 ((EdgeMenuListener)comp).setEdgeAndView(edge, vv);
-            }
-            if (comp instanceof MenuPointListener) {
-                ((MenuPointListener)comp).setPoint(point);
             }
         }
     }
