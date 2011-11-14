@@ -1,0 +1,221 @@
+!SESSION 2011-11-14 19:53:52.828 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_26
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=pt_BR
+Framework arguments:  -psn_0_803012
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data /Users/leonardo/workspaces/choreos/dynamic-adaptation/dynamic_bpel/petals_workspace -psn_0_803012
+
+!ENTRY org.eclipse.core.net 1 0 2011-11-14 19:53:58.705
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.bpel.validator 1 0 2011-11-14 19:56:16.689
+!MESSAGE Validator Startup 22ms
+
+!ENTRY org.eclipse.core.resources 4 566 2011-11-14 20:02:55.801
+!MESSAGE An error occurred while traversing resources.
+!STACK 0
+java.lang.NullPointerException
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder$1.visit(PetalsBpelBuilder.java:138)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:108)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:60)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:86)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:127)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:70)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:106)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:90)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.fullBuild(PetalsBpelBuilder.java:132)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.incrementalBuild(PetalsBpelBuilder.java:201)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.build(PetalsBpelBuilder.java:80)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.ebmwebsourcing.petals.services.bpel 2 0 2011-11-14 20:02:55.802
+!MESSAGE An error occurred while traversing resources.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/su-BPEL-GreetingPerson-provide)[566]: java.lang.NullPointerException
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder$1.visit(PetalsBpelBuilder.java:138)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:108)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:60)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:86)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:127)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:70)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:106)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:90)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.fullBuild(PetalsBpelBuilder.java:132)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.incrementalBuild(PetalsBpelBuilder.java:201)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.build(PetalsBpelBuilder.java:80)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.core.resources 4 566 2011-11-14 20:02:55.803
+!MESSAGE An error occurred while traversing resources.
+!STACK 0
+java.lang.NullPointerException
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder$1.visit(PetalsBpelBuilder.java:138)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:108)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:60)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:86)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:127)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:70)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:106)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:90)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.fullBuild(PetalsBpelBuilder.java:132)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.incrementalBuild(PetalsBpelBuilder.java:201)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.build(PetalsBpelBuilder.java:80)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 566 2011-11-14 20:05:30.328
+!MESSAGE An error occurred while traversing resources.
+!STACK 0
+java.lang.NullPointerException
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder$1.visit(PetalsBpelBuilder.java:138)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:108)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:60)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:86)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:127)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:70)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:106)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:90)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.fullBuild(PetalsBpelBuilder.java:132)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.incrementalBuild(PetalsBpelBuilder.java:201)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.build(PetalsBpelBuilder.java:80)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.ebmwebsourcing.petals.services.bpel 2 0 2011-11-14 20:05:30.328
+!MESSAGE An error occurred while traversing resources.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/su-BPEL-GreetingPerson-provide)[566]: java.lang.NullPointerException
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder$1.visit(PetalsBpelBuilder.java:138)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:108)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:60)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:86)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:127)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:70)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:106)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:90)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.fullBuild(PetalsBpelBuilder.java:132)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.incrementalBuild(PetalsBpelBuilder.java:201)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.build(PetalsBpelBuilder.java:80)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.core.resources 4 566 2011-11-14 20:05:30.328
+!MESSAGE An error occurred while traversing resources.
+!STACK 0
+java.lang.NullPointerException
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder$1.visit(PetalsBpelBuilder.java:138)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:108)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:60)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:86)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:127)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:70)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:106)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:90)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.fullBuild(PetalsBpelBuilder.java:132)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.incrementalBuild(PetalsBpelBuilder.java:201)
+	at com.ebmwebsourcing.petals.services.bpel.designer.builder.PetalsBpelBuilder.build(PetalsBpelBuilder.java:80)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.532
+!MESSAGE NLS unused message: FileSearchPage_limited_format in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.533
+!MESSAGE NLS unused message: FileSearchPage_error_marker in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.533
+!MESSAGE NLS unused message: FileSearchPage_sort_by_label in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.533
+!MESSAGE NLS unused message: OpenWithMenu_label in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.534
+!MESSAGE NLS unused message: FileLabelProvider_count_format in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.534
+!MESSAGE NLS unused message: FileLabelProvider_removed_resource_label in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.534
+!MESSAGE NLS unused message: FileSearchQuery_label in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.535
+!MESSAGE NLS unused message: FileSearchQuery_pluralPattern in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.535
+!MESSAGE NLS unused message: FileSearchQuery_singularLabel in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.535
+!MESSAGE NLS unused message: FileSearchQuery_singularLabel_fileNameSearch in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.535
+!MESSAGE NLS unused message: FileSearchQuery_pluralPattern_fileNameSearch in: org.eclipse.wst.common.ui.internal.search.SearchMessages
+
+!ENTRY org.eclipse.osgi 2 1 2011-11-14 20:06:33.535
+!MESSAGE NLS unused message: TextSearchEngine_statusMessage in: org.eclipse.wst.common.ui.internal.search.SearchMessages

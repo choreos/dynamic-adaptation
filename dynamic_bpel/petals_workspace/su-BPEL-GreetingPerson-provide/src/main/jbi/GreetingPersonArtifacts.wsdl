@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions 
+		xmlns="http://schemas.xmlsoap.org/wsdl/" 
+		xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" 
+		xmlns:tns="http://petals.ow2.org/bpel/GreetingPerson/Artifacts"
+		xmlns:processDefinition="http://petals.ow2.org/bpel/GreetingPerson/"
+		xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" 
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		name="GreetingPersonArtifacts" 
+		targetNamespace="http://petals.ow2.org/bpel/GreetingPerson/Artifacts">
+		
+    <plnk:partnerLinkType name="GreetingPersonPLT">
+        <plnk:role name="GreetingPersonRole" portType="processDefinition:GreetingPersonPortType"/>
+    </plnk:partnerLinkType>
+    
+  	<import location="GreetingPersonDefinition.wsdl" 
+  			namespace="http://petals.ow2.org/bpel/GreetingPerson/" />
+</definitions>

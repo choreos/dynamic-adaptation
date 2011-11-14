@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<definitions name="GreetingPersonDefinition"
+        targetNamespace="http://petals.ow2.org/bpel/GreetingPerson/"
+        xmlns:tns="http://petals.ow2.org/bpel/GreetingPerson/"
+        xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+ 
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     TYPE DEFINITION - List of types participating in this BPEL process 
+     The BPEL Designer will generate default request and response types
+     but you can define or import any XML Schema type and use them as part 
+     of the message types.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <types>
+        <schema 
+        		attributeFormDefault="unqualified" 
+        		elementFormDefault="qualified" 
+            	targetNamespace="http://petals.ow2.org/bpel/GreetingPerson/" 
+            	xmlns="http://www.w3.org/2001/XMLSchema"
+            	xmlns:petals="http://petals.ow2.org/bpel/GreetingPerson/">
+
+			<element name="GreetingPersonRequest" type="petals:GreetingPersonRequest" />
+            <complexType name="GreetingPersonRequest">
+                    <sequence>
+                        <element name="input" type="string"/>
+                    </sequence>
+            </complexType>
+
+			<element name="GreetingPersonResponse" type="petals:GreetingPersonResponse" />
+            <complexType name="GreetingPersonResponse">
+                    <sequence>
+                        <element name="result" type="string"/>
+                    </sequence>
+            </complexType>
+        </schema>
+    </types>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     MESSAGE TYPE DEFINITION - Definition of the message types used as 
+     part of the port type definitions
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <message name="GreetingPersonRequestMessage">
+        <part name="payload" element="tns:GreetingPersonRequest"/>
+    </message>
+    <message name="GreetingPersonResponseMessage">
+        <part name="payload" element="tns:GreetingPersonResponse"/>
+    </message>
+    
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PORT TYPE DEFINITION - A port type groups a set of operations into
+     a logical service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+
+    <!-- portType implemented by the processName BPEL process -->
+    <portType name="GreetingPersonPortType">
+        <operation name="process">
+            <input name="processInput" message="tns:GreetingPersonRequestMessage" />
+            <output name="processOutput" message="tns:GreetingPersonResponseMessage"/>
+        </operation>
+    </portType>
+
+
+ <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     BINDING DEFINITION 
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+  
+ 	<binding name="GreetingPersonBinding" type="tns:GreetingPersonPortType">
+    	<soap:binding style="document"
+ 			transport="http://schemas.xmlsoap.org/soap/http" />
+   		
+   		<operation name="process">
+			<soap:operation soapAction="http:petals.ow2.org/process" />
+			<input name="processInput">
+    			<soap:body use="literal" />
+    		</input>
+    		<output name="processOutput">
+    			<soap:body use="literal" />
+    		</output>
+		</operation>
+	</binding>
+      
+ <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     SERVICE DEFINITION 
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+  
+    <service name="GreetingPersonService">
+    	<port name="GreetingPersonEndpoint" binding="tns:GreetingPersonBinding">
+    		<soap:address location="GreetingPersonEndpoint"></soap:address>
+    	</port>
+    </service>
+    
+</definitions>
