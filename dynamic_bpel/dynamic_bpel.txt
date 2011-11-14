@@ -48,4 +48,20 @@ Neste tutorial não há a noção de "papel".
 Possível experimento:
 One application of this technique is in building a framework for exception handling. If you have more than one available address where a given service is available (such as a local server and a remote redundant server), you can roll-over to the secondary address when a call to the primary fails by using an exception handler to override the address information in the endpoint reference and retry the invocation of the service. 
 
+===============
+
+Anotações extras
+
+"In essence, the endpoint reference is a dynamic alternative to the static service element defined in the WSDL."
+
+"It is important to define this **template interface** carefully because a **change** here can affect many processes down the line."
+OMG! no agile here… =/
+
+"The DynamicPartnerLink process basically consists of a switch. It inspects the "provider" string passed in by the caller. Then, it assigns an EndpointReference xml data structure to the partnerReference variable containing the information relevant to the service that you're requesting. After the switch, **the partnerReference variable is assigned to the LoanService partner link** and the partner link is invoked."
+
+* Como funfa o BPEL estático
+INVOKE invoca uma operação de um PARTNER_LINK. Este PARTNER_LINK possui um PARTNER_LINK_TYPE, que por sua vez efetua a associação de um ROLE a um PORT_TYPE. Este PORT_TYPE está declarado no WSDL e associado pelo BINDING ao protcolo SOAP. Ainda no WSDL, o PORT do SERVICE é que faz a associação entre o BINDING feito e o endereço real do serviço (soap: address location=URI).
+
+
+
 

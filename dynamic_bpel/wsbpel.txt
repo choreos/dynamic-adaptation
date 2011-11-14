@@ -1,0 +1,18 @@
+[http://docs.oasis-open.org/wsbpel/2.0/wsbpel-v2.0.html]
+
+6. Partner Link Types, Partner Links, and Endpoint References
+
+"The newline appended to the data inside these elements (</Address> and </ServiceName> inside <EndpointReference>) breaks the binding." 
+
+Um PartnerLinkType é uma associação Role-PortType (PortType é a interface de operações disponíveis)
+
+"Within a <partnerLink>, the role of the business process itself is indicated by the attribute myRole and the role of the partner is indicated by the attribute partnerRole. When a partnerLinkType has only one role, one of these attributes is omitted as appropriate. [SA00016] Note that a <partnerLink> MUST specify the myRole, or the partnerRole, or both. This syntactic constraint MUST be statically enforced."
+
+"Partner link types establish a relationship between WSDL port types of two Web services. The purpose of partner link types is to keep this relationship clear within the process, and make processes with more than one partner easier to understand."
+
+"It is also possible to bind partner links dynamically. WS-BPEL provides the mechanisms to do so via assignment of endpoint references (**see section 8.4. Assignment**)"
+
+"WSDL makes an important distinction between port types and ports. **Port types define abstract functionality** by using abstract messages. **Ports provide actual access information**, including communication service endpoints and (by using extension elements) other deployment related information such as public keys for encryption. **Bindings provide the glue between the two**. While the user of a service must be statically dependent on the abstract interface defined by port types, some of the information contained in port definitions can typically be discovered and used dynamically."
+
+------------
+
