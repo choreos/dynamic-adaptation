@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;su-BPEL-GreetingPerson-provide&apos;" deleteContents="true" description="Delete resource &apos;su-BPEL-GreetingPerson-provide&apos;" element1="/su-BPEL-GreetingPerson-provide" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1321387320931"/>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;su-BPEL-GreetingPerson-provide&apos;" deleteContents="true" description="Delete resource &apos;su-BPEL-GreetingPerson-provide&apos;" element1="/su-BPEL-GreetingPerson-provide" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1321387320931"/>&#x0A;<refactoring comment="Delete resource &apos;su-SOAP-HelloService-provide&apos;" deleteContents="true" description="Delete resource &apos;su-SOAP-HelloService-provide&apos;" element1="/su-SOAP-HelloService-provide" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1321387417628"/>
 </session>
