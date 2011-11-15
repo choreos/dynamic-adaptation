@@ -1,0 +1,13 @@
+!SESSION 2011-11-15 18:09:34.762 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_26
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=pt_BR
+Framework arguments:  -psn_0_192559
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -psn_0_192559
+
+!ENTRY org.eclipse.core.net 1 0 2011-11-15 18:09:40.407
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.bpel.validator 1 0 2011-11-15 18:10:11.112
+!MESSAGE Validator Startup 185ms
