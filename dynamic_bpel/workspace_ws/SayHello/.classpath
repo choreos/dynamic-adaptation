@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="lib/jaxws/activation.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/FastInfoset.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/gmbal-api-only.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/ha-api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/http.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/jaxb-api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/jaxws-api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/jaxws-rt.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/jaxws-tools.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/jsr173_api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/jsr181-api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/jsr250-api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/management-api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/mimepull.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/policy.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/resolver.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/saaj-api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/saaj-impl.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/stax-ex.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/streambuffer.jar"/>
+	<classpathentry kind="lib" path="lib/jaxws/woodstox.jar"/>
+	<classpathentry kind="lib" path="lib/rehearsal-0.8.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

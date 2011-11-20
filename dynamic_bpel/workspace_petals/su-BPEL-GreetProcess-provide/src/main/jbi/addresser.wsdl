@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://greeting.baile.usp/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="AddresserImplService" targetNamespace="http://greeting.baile.usp/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://greeting.baile.usp/" schemaLocation="addresser_xsd_1" />
+    </xsd:schema>
+  </types>
+  <message name="getEndpoint">
+    <part name="parameters" element="tns:getEndpoint" />
+  </message>
+  <message name="getEndpointResponse">
+    <part name="parameters" element="tns:getEndpointResponse" />
+  </message>
+  <portType name="Addresser">
+    <operation name="getEndpoint">
+      <input message="tns:getEndpoint" />
+      <output message="tns:getEndpointResponse" />
+    </operation>
+  </portType>
+  <binding name="AddresserImplPortBinding" type="tns:Addresser">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getEndpoint">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="AddresserImplService">
+    <port name="AddresserImplPort" binding="tns:AddresserImplPortBinding">
+      <soap:address location="http://localhost:1237/addresser" />
+    </port>
+  </service>
+</definitions>
+

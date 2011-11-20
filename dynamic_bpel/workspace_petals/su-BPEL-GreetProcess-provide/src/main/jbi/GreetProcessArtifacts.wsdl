@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:processDefinition="http://petals.ow2.org/bpel/GreetProcess/" xmlns:tns="http://petals.ow2.org/bpel/GreetProcess/Artifacts" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://greeting.baile.usp/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GreetProcessArtifacts" targetNamespace="http://petals.ow2.org/bpel/GreetProcess/Artifacts">
+		
+    <plnk:partnerLinkType name="GreetProcessPLT">
+        <plnk:role name="GreetProcessRole" portType="processDefinition:GreetProcessPortType"/>
+    </plnk:partnerLinkType>
+  
+    <plnk:partnerLinkType name="GreetingPLT">
+    <plnk:role name="GreetingRole" portType="wsdl:Greeting"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="AddresserPLT">
+    <plnk:role name="AddresserRole" portType="wsdl:Addresser"/>
+  </plnk:partnerLinkType>
+    <import location="GreetProcessDefinition.wsdl" namespace="http://petals.ow2.org/bpel/GreetProcess/"/>
+    <import location="hello.wsdl" namespace="http://greeting.baile.usp/"/>
+    <import location="addresser.wsdl" namespace="http://greeting.baile.usp/"/>
+</definitions>

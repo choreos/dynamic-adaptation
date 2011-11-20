@@ -1,0 +1,71 @@
+<process name="GreetProcess"
+         targetNamespace="http://petals.ow2.org/bpel/GreetProcess/"          
+         xmlns:tns="http://petals.ow2.org/bpel/GreetProcess/"
+         xmlns:artifacts="http://petals.ow2.org/bpel/GreetProcess/Artifacts"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+
+    <!-- Import the client WSDL -->
+    <bpel:import namespace="http://greeting.baile.usp/" location="hello.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"></bpel:import>
+    <import location="GreetProcessDefinition.wsdl" 
+			namespace="http://petals.ow2.org/bpel/GreetProcess/" 
+	        importType="http://schemas.xmlsoap.org/wsdl/" />
+	        
+	<import location="GreetProcessArtifacts.wsdl"
+			namespace="http://petals.ow2.org/bpel/GreetProcess/Artifacts"
+			importType="http://schemas.xmlsoap.org/wsdl/" />
+	                
+    <!-- ================================================================= -->         
+    <!-- PARTNERLINKS                                                      -->
+    <!-- List of services participating in this BPEL process               -->
+    <!-- ================================================================= -->         
+    <partnerLinks>
+        <!-- The 'client' role represents the requester of this service. -->
+        <partnerLink name="GreetProcessPartner"
+                     partnerLinkType="artifacts:GreetProcessPLT"
+                     myRole="GreetProcessRole" />
+        <bpel:partnerLink name="GreetingPartner" partnerLinkType="artifacts:GreetingPLT" partnerRole="GreetingRole"></bpel:partnerLink>
+    </partnerLinks>
+  
+    <!-- ================================================================= -->         
+    <!-- VARIABLES                                                         -->
+    <!-- List of messages and XML documents used within this BPEL process  -->
+    <!-- ================================================================= -->         
+    <variables>
+    	<bpel:variable 	name="GreetProcessPartnerRequest" 
+    					messageType="tns:GreetProcessRequestMessage" />
+    </variables>
+
+    <!-- ================================================================= -->         
+    <!-- ORCHESTRATION LOGIC                                               -->
+    <!-- Set of activities coordinating the flow of messages across the    -->
+    <!-- services integrated within this business process                  -->
+    <!-- ================================================================= -->         
+    <sequence name="MainSequence">
+    	<bpel:receive 	name="ReceiveMessage" partnerLink="GreetProcessPartner" 
+    					operation="process" portType="tns:GreetProcessPortType" 
+    					variable="GreetProcessPartnerRequest" />
+        <bpel:assign validate="no" name="AssignToInvokeGreeting">
+            <bpel:copy>
+                <bpel:from>
+                    <bpel:literal xml:space="preserve"><tns:GreetProcessRequest xmlns:tns="http://petals.ow2.org/bpel/GreetProcess/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <tns:input></tns:input>
+</tns:GreetProcessRequest>
+</bpel:literal>
+                </bpel:from>
+                <bpel:to variable="GreetProcessPartnerRequest" part="payload"></bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from part="payload" variable="GreetProcessPartnerRequest">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[tns:input]]></bpel:query>
+                </bpel:from>
+                <bpel:to part="payload" variable="GreetProcessPartnerRequest">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[tns:input]]></bpel:query>
+                </bpel:to>
+            </bpel:copy>
+        </bpel:assign>
+        <bpel:invoke name="InvokeGreeting"></bpel:invoke>
+        <bpel:assign validate="no" name="AssignToReply"></bpel:assign>
+        <bpel:reply name="Reply"></bpel:reply>
+    </sequence>
+</process>

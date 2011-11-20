@@ -1,0 +1,19 @@
+2011-11-20 14:51:32,426 WARN  [SoapUI] Missing folder [/home/leonardo/workspace/Addresser/./ext] for external libraries
+2011-11-20 14:51:32,613 INFO  [DefaultSoapUICore] initialized soapui-settings from [/home/leonardo/soapui-settings.xml]
+2011-11-20 14:51:33,296 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/xop.xsd with targetNamespace http://www.w3.org/2004/08/xop/include
+2011-11-20 14:51:33,368 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/XMLSchema.xsd with targetNamespace http://www.w3.org/2001/XMLSchema
+2011-11-20 14:51:33,369 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/xml.xsd with targetNamespace http://www.w3.org/XML/1998/namespace
+2011-11-20 14:51:33,370 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/swaref.xsd with targetNamespace http://ws-i.org/profiles/basic/1.1/xsd
+2011-11-20 14:51:33,370 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/xmime200505.xsd with targetNamespace http://www.w3.org/2005/05/xmlmime
+2011-11-20 14:51:33,371 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/xmime200411.xsd with targetNamespace http://www.w3.org/2004/11/xmlmime
+2011-11-20 14:51:33,379 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/soapEnvelope.xsd with targetNamespace http://schemas.xmlsoap.org/soap/envelope/
+2011-11-20 14:51:33,380 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/soapEncoding.xsd with targetNamespace http://schemas.xmlsoap.org/soap/encoding/
+2011-11-20 14:51:33,380 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/soapEnvelope12.xsd with targetNamespace http://www.w3.org/2003/05/soap-envelope
+2011-11-20 14:51:33,381 INFO  [SchemaUtils] Added default schema from file:/home/leonardo/workspace/Addresser/lib/rehearsal-0.8.jar!/com/eviware/soapui/resources/xsds/soapEncoding12.xsd with targetNamespace http://www.w3.org/2003/05/soap-encoding
+2011-11-20 14:51:33,575 INFO  [SchemaUtils] Loading schema types from [http://localhost:1237/addresser?wsdl]
+2011-11-20 14:51:33,576 INFO  [SchemaUtils] Getting schema http://localhost:1237/addresser?wsdl
+2011-11-20 14:51:33,578 INFO  [SchemaUtils] Getting schema http://localhost:1237/addresser?xsd=1
+2011-11-20 14:51:33,799 INFO  [WsdlImporter] Finding importer for {http://greeting.baile.usp/}AddresserImplPortBinding
+2011-11-20 14:51:33,803 INFO  [WsdlImporter] Importing binding {http://greeting.baile.usp/}AddresserImplPortBinding
+2011-11-20 14:51:33,822 INFO  [Soap11HttpBindingImporter] importing endpoint http://localhost:1237/addresser
+2011-11-20 14:51:33,834 INFO  [Soap11HttpBindingImporter] importing operation getEndpoint
